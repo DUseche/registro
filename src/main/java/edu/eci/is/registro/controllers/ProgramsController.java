@@ -1,5 +1,6 @@
 package edu.eci.is.registro.controllers;
 
+import edu.eci.is.registro.entities.Course;
 import edu.eci.is.registro.entities.Line;
 import edu.eci.is.registro.entities.Program;
 import edu.eci.is.registro.services.ProgramServices;
@@ -37,37 +38,62 @@ public class ProgramsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Program>> getAllPrograms(){
-        if(checkPrivileges(4))return ResponseEntity.ok().body(programServices.getAll());
+        if(checkPrivileges(1))return ResponseEntity.ok().body(programServices.getAll());
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/{name}", method = RequestMethod.GET)
     public ResponseEntity<Program> getProgramByName(@PathVariable String name){
-        try{
-            Program returned = programServices.getByName(name);
-            if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            return ResponseEntity.ok().body(returned);
-        }catch(Exception ex){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        if(checkPrivileges(1)){
+            try{
+                Program returned = programServices.getByName(name);
+                if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok().body(returned);
+            }catch(Exception ex){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/{program}/{line}", method = RequestMethod.GET)
     public ResponseEntity<Line> getLineByNameAndProgram(@PathVariable String program, @PathVariable String line){
-        try{
-            Line returned = programServices.getByName(program).getLineByName(line);
-            if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            return ResponseEntity.ok().body(returned);
-        }catch(Exception ex){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        if(checkPrivileges(1)){
+            try{
+                Line returned = programServices.getByName(program).getLineByName(line);
+                if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok().body(returned);
+            }catch(Exception ex){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
-
-
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> postProgram(@RequestBody Program program){
-        programServices.saveProgram(program);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        if(checkPrivileges(4)){
+            programServices.saveProgram(program);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+    @RequestMapping(path = "/{program}",method = RequestMethod.POST)
+    public ResponseEntity<?> postLineIntoProgram(@PathVariable String programName, @RequestBody Line line){
+        if(checkPrivileges(3)){
+            programServices.saveLineIntoProgram(programName, line);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+    @RequestMapping(path = "/{program}/{line]")
+    public ResponseEntity<?> postCourseIntoLineIntoProgram(@PathVariable String program, @PathVariable String line, Course course){
+        if (checkPrivileges(2)) {
+            programServices.saveCourseIntoLineIntoProgram(program,line,course);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 }
