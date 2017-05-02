@@ -25,7 +25,7 @@ public class Evaluation implements Serializable{
     public Evaluation() {
     }
 
-    @Column(name = "one")
+    @Column(name = "noteOne")
     public Float getNoteOnePercent() {
         return noteOnePercent;
     }
@@ -34,7 +34,7 @@ public class Evaluation implements Serializable{
         this.noteOnePercent = noteOnePercent;
     }
 
-    @Column(name = "two")
+    @Column(name = "noteTwo")
     public Float getNoteTwoPercent() {
         return noteTwoPercent;
     }
@@ -43,7 +43,7 @@ public class Evaluation implements Serializable{
         this.noteTwoPercent = noteTwoPercent;
     }
 
-    @Column(name = "three")
+    @Column(name = "noteThree")
     public Float getNoteThreePercent() {
         return noteThreePercent;
     }
@@ -52,7 +52,7 @@ public class Evaluation implements Serializable{
         this.noteThreePercent = noteThreePercent;
     }
 
-    @Column(name = "lab")
+    @Column(name = "noteLab")
     public Float getNoteLabPercent() {
         return noteLabPercent;
     }

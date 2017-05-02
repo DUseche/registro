@@ -53,9 +53,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication().withUser("user").password("password").authorities("4");
-        builder.inMemoryAuthentication().withUser("userCareer").password("password").authorities("3");
-        //builder.authenticationProvider(authProvider());
+        //builder.inMemoryAuthentication().withUser("userProgram").password("password").authorities("4");
+        //builder.inMemoryAuthentication().withUser("userCareer").password("password").authorities("3");
+        //builder.inMemoryAuthentication().withUser("userLine").password("password").authorities("2");
+        //builder.inMemoryAuthentication().withUser("userNormal").password("password").authorities("1");
+        //builder.inMemoryAuthentication().withUser("admin").password("admin").authorities("ADMIN_ROLE");
+        builder.authenticationProvider(authProvider());
     }
 
     @Override
@@ -63,13 +66,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic()
                 .and()
-                .authorizeRequests()
+                .authorizeRequests().anyRequest().authenticated()
                 .antMatchers("/programs/**").authenticated()
+                .antMatchers("/user/**").hasAuthority("ADMIN_ROLE")
                 .and()
                 .logout().logoutSuccessUrl("/")
-                .and().csrf()
-                .csrfTokenRepository(csrfTokenRepository()).and()
-                .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+                .and().csrf().disable();
     }
 
     private Filter csrfHeaderFilter() {

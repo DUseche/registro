@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by David Useche on 30/04/2017.
  */
 @Entity
-@Table(name = "LINES")
+@Table(name = "PROGRAM_LINES")
 public class Line implements Serializable{
 
     private String name;
@@ -27,7 +27,7 @@ public class Line implements Serializable{
     }
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "COURSES_name", referencedColumnName = "name")
+    @JoinColumn(name = "PROGRAM_LINES_name", referencedColumnName = "name")
     public Set<Course> getCourses() {
         return courses;
     }

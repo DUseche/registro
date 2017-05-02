@@ -1,0 +1,10 @@
+//Creacion usuarios
+curl -u admin:admin -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/user/registrer -d '{"mail": "admin@escuelaing.edu.co", "password": "administracion","authority":"ADMIN_ROLE"}'
+curl -u admin@escuelaing.edu.co:administracion -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/user/registrer -d '{"mail": "registro.materias@escuelaing.edu.co", "password": "registro","authority":"4"}'
+curl -u admin@escuelaing.edu.co:administracion -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/user/registrer -d '{"mail": "oswaldo.castillo@escuelaing.edu.co", "password": "oswaldo","authority":"3","program":"Ingenieria de sistemas"}'
+curl -u admin@escuelaing.edu.co:administracion -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/user/registrer -d '{"mail": "claudia.santiago@escuelaing.edu.co", "password": "claudia","authority":"2","program":"Ingenieria de sistemas","line":"Plataformas"}'
+curl -u admin@escuelaing.edu.co:administracion -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/user/registrer -d '{"mail": "gerardo.ospina@escuelaing.edu.co", "password": "gerardo","authority":"1","program":"Ingenieria de sistemas","line":"Plataformas"}'
+//Creacion programa del usuario registro
+curl -u registro.materias@escuelaing.edu.co:registro -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs -d '{"name": "Ingenieria industrial"}'
+//Creacion linea de ingenieria de sistemas por parte de Oswaldo
+curl -u oswaldo.castillo@escuelaing.edu.co:oswaldo -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas -d '{"name": "Ingenieria de software"}'

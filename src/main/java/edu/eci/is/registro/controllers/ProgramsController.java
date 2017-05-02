@@ -12,8 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Clock;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -79,7 +77,7 @@ public class ProgramsController {
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
-    @RequestMapping(path = "/{program}",method = RequestMethod.POST)
+    @RequestMapping(path = "/{programName}",method = RequestMethod.POST)
     public ResponseEntity<?> postLineIntoProgram(@PathVariable String programName, @RequestBody Line line){
         if(checkPrivileges(3)){
             programServices.saveLineIntoProgram(programName, line);
@@ -88,7 +86,7 @@ public class ProgramsController {
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
-    @RequestMapping(path = "/{program}/{line]")
+    @RequestMapping(path = "/{program}/{line}")
     public ResponseEntity<?> postCourseIntoLineIntoProgram(@PathVariable String program, @PathVariable String line, Course course){
         if (checkPrivileges(2)) {
             programServices.saveCourseIntoLineIntoProgram(program,line,course);

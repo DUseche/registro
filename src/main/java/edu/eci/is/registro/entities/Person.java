@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "PERSONS")
+@Table(name = "PERSONS_AUTH")
 public class Person implements Serializable{
 
     private String mail;
@@ -22,6 +22,14 @@ public class Person implements Serializable{
         this.mail = mail;
         this.password = password;
         this.authority = authority;
+    }
+
+    public Person(String mail, String password, String authority, String program, String line) {
+        this.mail = mail;
+        this.password = password;
+        this.authority = authority;
+        this.program = program;
+        this.line = line;
     }
 
     @Id

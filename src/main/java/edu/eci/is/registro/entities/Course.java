@@ -17,7 +17,7 @@ public class Course implements Serializable{
     private String mnemonicCode;
     private Integer numericCode;
     private String justification;
-    //private
+    private Set<String> requisites;
     private Set<String> methodology;
     private Evaluation evaluation;
     private WeeklyIntensity weeklyIntensity;
@@ -26,13 +26,14 @@ public class Course implements Serializable{
     private PragmaticContent pragmaticContent;
     private Term term;
 
-    public Course(String objective, String name, Set<Integer> studyPlans, String mnemonicCode, Integer numericCode, String justification, Set<String> methodology, Evaluation evaluation, WeeklyIntensity weeklyIntensity, Bibliography bibliography, Credits credits, PragmaticContent pragmaticContent, Term term) {
+    public Course(String objective, String name, Set<Integer> studyPlans, String mnemonicCode, Integer numericCode, String justification, Set<String> requisites, Set<String> methodology, Evaluation evaluation, WeeklyIntensity weeklyIntensity, Bibliography bibliography, Credits credits, PragmaticContent pragmaticContent, Term term) {
         this.objective = objective;
         this.name = name;
         this.studyPlans = studyPlans;
         this.mnemonicCode = mnemonicCode;
         this.numericCode = numericCode;
         this.justification = justification;
+        this.requisites = requisites;
         this.methodology = methodology;
         this.evaluation = evaluation;
         this.weeklyIntensity = weeklyIntensity;
@@ -45,6 +46,14 @@ public class Course implements Serializable{
     public Course() {
     }
 
+    @ElementCollection(targetClass = String.class)
+    public Set<String> getRequisites() {
+        return requisites;
+    }
+
+    public void setRequisites(Set<String> requisites) {
+        this.requisites = requisites;
+    }
     @Column(name = "objective")
     public String getObjective() {
         return objective;
