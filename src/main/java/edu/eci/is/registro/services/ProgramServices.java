@@ -20,4 +20,6 @@ public interface ProgramServices{
     void saveLineIntoProgram(String programName, Line toAdd);
 
     void saveCourseIntoLineIntoProgram(String programName, String lineName, Course toAdd);
+
+    void updateCourse(String programName, String lineName, String courseName, Course toUpdate);
 }

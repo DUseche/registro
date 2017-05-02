@@ -36,17 +36,31 @@ public class ProgramServicesImp implements ProgramServices{
     @Override
     public void saveLineIntoProgram(String programName, Line toAdd) {
         Program obtained = getByName(programName);
-        obtained.addLine(toAdd);
-        programsRepository.delete(programName);
-        programsRepository.save(obtained);
+        if(obtained!=null){
+            obtained.addLine(toAdd);
+            programsRepository.delete(programName);
+            programsRepository.save(obtained);
+        }
     }
 
     @Override
     public void saveCourseIntoLineIntoProgram(String programName, String lineName, Course toAdd) {
         Program obtained = getByName(programName);
-        obtained.getLineByName(lineName).addCourse(toAdd);
-        programsRepository.delete(programName);
-        programsRepository.save(obtained);
+        if(obtained!=null){
+            obtained.getLineByName(lineName).addCourse(toAdd);
+            programsRepository.delete(programName);
+            programsRepository.save(obtained);
+        }
+    }
+
+    @Override
+    public void updateCourse(String programName, String lineName, String courseName, Course toUpdate) {
+        Program obtained = getByName(programName);
+        if(obtained!=null){
+            obtained.getLineByName(lineName).updateCourse(courseName, toUpdate);
+            programsRepository.delete(programName);
+            programsRepository.save(obtained);
+        }
     }
 
 }

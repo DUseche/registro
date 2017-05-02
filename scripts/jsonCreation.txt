@@ -8,3 +8,8 @@ curl -u admin@escuelaing.edu.co:administracion -i -X POST -HContent-Type:applica
 curl -u registro.materias@escuelaing.edu.co:registro -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs -d '{"name": "Ingenieria industrial"}'
 //Creacion linea de ingenieria de sistemas por parte de Oswaldo
 curl -u oswaldo.castillo@escuelaing.edu.co:oswaldo -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas -d '{"name": "Ingenieria de software"}'
+//Creacion materia de ingenieria de sistemas linea de redes por parte de claudia
+curl -u claudia.santiago@escuelaing.edu.co:claudia -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas/Redes -d '{"name": "Fundamentos de redes"}'
+curl -u claudia.santiago@escuelaing.edu.co:claudia -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas/Redes -d '{"name": "Seguridad informatica"}'
+//Actualizar materia anterior
+curl -u claudia.santiago@escuelaing.edu.co:claudia -i -X PUT -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas/Redes/Fundamentos%20de%20redes -d '{"name": "Fundamentos de redes", "mnemonic":"FRED"}'

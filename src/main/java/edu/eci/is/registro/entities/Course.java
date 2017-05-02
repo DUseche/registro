@@ -26,6 +26,10 @@ public class Course implements Serializable{
     private PragmaticContent pragmaticContent;
     private Term term;
 
+    public Course(String name) {
+        this.name = name;
+    }
+
     public Course(String objective, String name, Set<Integer> studyPlans, String mnemonicCode, Integer numericCode, String justification, Set<String> requisites, Set<String> methodology, Evaluation evaluation, WeeklyIntensity weeklyIntensity, Bibliography bibliography, Credits credits, PragmaticContent pragmaticContent, Term term) {
         this.objective = objective;
         this.name = name;

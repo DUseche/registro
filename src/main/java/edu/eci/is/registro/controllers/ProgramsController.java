@@ -48,7 +48,7 @@ public class ProgramsController {
                 if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 return ResponseEntity.ok().body(returned);
             }catch(Exception ex){
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -62,7 +62,7 @@ public class ProgramsController {
                 if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 return ResponseEntity.ok().body(returned);
             }catch(Exception ex){
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -71,8 +71,12 @@ public class ProgramsController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> postProgram(@RequestBody Program program){
         if(checkPrivileges(4)){
-            programServices.saveProgram(program);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            try{
+                programServices.saveProgram(program);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }catch(Exception ex){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
         }
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
@@ -80,17 +84,39 @@ public class ProgramsController {
     @RequestMapping(path = "/{programName}",method = RequestMethod.POST)
     public ResponseEntity<?> postLineIntoProgram(@PathVariable String programName, @RequestBody Line line){
         if(checkPrivileges(3)){
-            programServices.saveLineIntoProgram(programName, line);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            try{
+                programServices.saveLineIntoProgram(programName, line);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }catch(Exception ex){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
         }
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
-    @RequestMapping(path = "/{program}/{line}")
-    public ResponseEntity<?> postCourseIntoLineIntoProgram(@PathVariable String program, @PathVariable String line, Course course){
+    @RequestMapping(path = "/{program}/{line}",method = RequestMethod.POST)
+    public ResponseEntity<?> postCourseIntoLineIntoProgram(@PathVariable String program, @PathVariable String line, @RequestBody Course course){
         if (checkPrivileges(2)) {
-            programServices.saveCourseIntoLineIntoProgram(program,line,course);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            try {
+                programServices.saveCourseIntoLineIntoProgram(program,line,course);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }catch(Exception ex){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+    @RequestMapping(path = "/{program}/{line}/{course}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateCourse(@PathVariable String program, @PathVariable String line, @PathVariable String course, @RequestBody Course newCourse){
+        if (checkPrivileges(2)) {
+            try {
+                programServices.updateCourse(program,line,course,newCourse);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }catch(Exception ex){
+                ex.printStackTrace();
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
         }
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }

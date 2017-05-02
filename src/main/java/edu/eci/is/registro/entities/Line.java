@@ -70,4 +70,9 @@ public class Line implements Serializable{
             return tmp.get(tmp.indexOf(toSearch));
         }else return null;
     }
+
+    public void updateCourse(String courseName, Course newCourse){
+        courses.remove(new Course(courseName));
+        courses.add(newCourse);
+    }
 }
