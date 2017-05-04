@@ -86,6 +86,20 @@ public class ProgramsController {
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
+    @RequestMapping(path = "/{program}/{line}/{course}", method = RequestMethod.GET)
+    public ResponseEntity<Course> getCourseByLineAndProgramAndName(@PathVariable String program, @PathVariable String line, @PathVariable String course){
+        if(checkPrivileges(1)){
+            try{
+                Course returned = programServices.getByName(program).getLineByName(line).getCourseByName(course);
+                if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return ResponseEntity.ok().body(returned);
+            }catch(Exception ex){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> postProgram(@RequestBody Program program){
         if(checkPrivileges(4) && checkCareerAndLine(null ,null)){

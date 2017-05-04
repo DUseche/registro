@@ -1,0 +1,75 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sistema de gestión de contenidos programáticos</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            cargarLineas = function(){
+                var promise = function(data){
+                    console.log(data);
+                    $("#lineas").children().remove();
+                    for(i = 0; i < data.lines.length; i++){
+                        $("#lineas").append("<li id='"+data.lines[i].name+"'>"+data.lines[i].name+"</li>");
+                    }
+                }
+                $.get("/programs/"+sessionStorage.programa).then(promise);
+            };
+
+            $(document).ready(
+
+                function(){
+                    if(sessionStorage.programa == null){
+                        window.location.href = "home.html";
+                    }
+                    cargarLineas();
+                }
+            );
+        </script>
+        <div id="banner">
+            <img src="/banner.png" width="100%">
+        </div>
+        <div id="lines">
+            Lineas del programa
+            <ul id="lineas">
+
+            </ul>
+        </div>
+        <p></p>
+        <script type="text/javascript">
+            function Line(name){
+                this.name=name
+            }
+
+            registrarLinea = function(){
+                var name = $("#nuevaLinea").val();
+                var line = new Line(name);
+                $.ajax({
+                    type: "POST",
+                    url: "/programs/"+sessionStorage.programa,
+                    headers: {"X-HTTP-Method-Override": "POST", "Content-Type": "application/json"},
+                    data: JSON.stringify(line)
+                }).fail(function (response) {
+                    console.log(response);
+                    alert(response.responseText);
+                }).then(cargarLineas());
+            };
+
+            verLinea = function(){
+                sessionStorage.linea = $("#verLinea").val();
+                window.location.href = "verLinea.html";
+            }
+        </script>
+        <input type="text" id="nuevaLinea" value="Crear una linea"/>
+        <button type="button" onclick="registrarLinea()">Registrar</button>
+        <p></p>
+        <input type="text" id="verLinea" value="Ver materias de la linea"/>
+        <button type="button" onclick="verLinea()">Consultar</button>
+        <div id="cenefa">
+            Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+        </div>
+    </body>
+</html>

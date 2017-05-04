@@ -54,10 +54,17 @@
                 alert(response.responseText);
             }).then(cargarProgramas());
         };
+
+        verLineas = function(){
+            sessionStorage.programa = $("#verLineas").val();
+            window.location.href = "verPrograma.html";
+        }
     </script>
     <input type="text" id="nuevoPrograma" value="Crear un programa"/>
     <button type="button" onclick="registrarPrograma()">Registrar</button>
     <p></p>
+    <input type="text" id="verLineas" value="Ver lineas del programa"/>
+    <button type="button" onclick="verLineas()">Consultar</button>
     <div id="cenefa">
         Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
     </div>
