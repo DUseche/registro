@@ -53,11 +53,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        //builder.inMemoryAuthentication().withUser("userProgram").password("password").authorities("4");
-        //builder.inMemoryAuthentication().withUser("userCareer").password("password").authorities("3");
-        //builder.inMemoryAuthentication().withUser("userLine").password("password").authorities("2");
-        //builder.inMemoryAuthentication().withUser("userNormal").password("password").authorities("1");
-        //builder.inMemoryAuthentication().withUser("admin").password("admin").authorities("ADMIN_ROLE");
         builder.authenticationProvider(authProvider());
     }
 
@@ -70,6 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/programs/**").authenticated()
                 .antMatchers("/user/**").hasAuthority("ADMIN_ROLE")
                 .and()
+                .formLogin().permitAll().and()
                 .logout().logoutSuccessUrl("/")
                 .and().csrf().disable();
     }

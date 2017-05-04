@@ -12,4 +12,4 @@ curl -u oswaldo.castillo@escuelaing.edu.co:oswaldo -i -X POST -HContent-Type:app
 curl -u claudia.santiago@escuelaing.edu.co:claudia -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas/Redes -d '{"name": "Fundamentos de redes"}'
 curl -u claudia.santiago@escuelaing.edu.co:claudia -i -X POST -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas/Redes -d '{"name": "Seguridad informatica"}'
 //Actualizar materia anterior
-curl -u claudia.santiago@escuelaing.edu.co:claudia -i -X PUT -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas/Redes/Fundamentos%20de%20redes -d '{"name": "Fundamentos de redes", "mnemonic":"FRED"}'
+curl -u claudia.santiago@escuelaing.edu.co:claudia -i -X PUT -HContent-Type:application/json -HAccept:application/json http://localhost:8080/programs/Ingenieria%20de%20sistemas/Redes/Fundamentos%20de%20redes -d '{"name": "Fundamentos de redes", "mnemonicCode":"FRED"}'

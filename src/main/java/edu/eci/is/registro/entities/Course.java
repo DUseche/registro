@@ -190,4 +190,24 @@ public class Course implements Serializable{
     public int hashCode() {
         return name.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "objective='" + objective + '\'' +
+                ", name='" + name + '\'' +
+                ", studyPlans=" + studyPlans +
+                ", mnemonicCode='" + mnemonicCode + '\'' +
+                ", numericCode=" + numericCode +
+                ", justification='" + justification + '\'' +
+                ", requisites=" + requisites +
+                ", methodology=" + methodology +
+                ", evaluation=" + evaluation +
+                ", weeklyIntensity=" + weeklyIntensity +
+                ", bibliography=" + bibliography +
+                ", credits=" + credits +
+                ", pragmaticContent=" + pragmaticContent +
+                ", term=" + term +
+                '}';
+    }
 }

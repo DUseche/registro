@@ -3,7 +3,7 @@ package edu.eci.is.registro.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by David Useche on 30/04/2017.
@@ -14,7 +14,7 @@ public class Line implements Serializable{
 
     private String name;
 
-    private Set<Course> courses;
+    private List<Course> courses;
 
     @Id
     @Column(name = "name", nullable = false)
@@ -28,11 +28,11 @@ public class Line implements Serializable{
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "PROGRAM_LINES_name", referencedColumnName = "name")
-    public Set<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(Set<Course> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
 
@@ -72,7 +72,21 @@ public class Line implements Serializable{
     }
 
     public void updateCourse(String courseName, Course newCourse){
-        courses.remove(new Course(courseName));
-        courses.add(newCourse);
+        if(courses.contains(new Course(courseName))){
+            Course geted = courses.get(courses.indexOf(newCourse));
+            geted.setBibliography(newCourse.getBibliography());
+            geted.setCredits(newCourse.getCredits());
+            geted.setEvaluation(newCourse.getEvaluation());
+            geted.setJustification(newCourse.getJustification());
+            geted.setMethodology(newCourse.getMethodology());
+            geted.setMnemonicCode(newCourse.getMnemonicCode());
+            geted.setNumericCode(newCourse.getNumericCode());
+            geted.setObjective(newCourse.getObjective());
+            geted.setPragmaticContent(newCourse.getPragmaticContent());
+            geted.setRequisites(newCourse.getRequisites());
+            geted.setStudyPlans(newCourse.getStudyPlans());
+            geted.setTerm(newCourse.getTerm());
+            geted.setWeeklyIntensity(newCourse.getWeeklyIntensity());
+        }
     }
 }
