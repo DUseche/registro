@@ -72,4 +72,11 @@ public class Program implements Serializable{
         }else return null;
     }
 
+    @Override
+    public String toString() {
+        return "Program{" +
+                "lines=" + lines +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

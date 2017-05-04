@@ -89,4 +89,12 @@ public class Line implements Serializable{
             geted.setWeeklyIntensity(newCourse.getWeeklyIntensity());
         }
     }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "name='" + name + '\'' +
+                ", courses=" + courses +
+                '}';
+    }
 }

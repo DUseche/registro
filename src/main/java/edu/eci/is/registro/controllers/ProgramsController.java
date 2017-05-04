@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.List;
 
+import static org.springframework.data.repository.init.ResourceReader.Type.JSON;
+
 /**
  * Created by David Useche on 30/04/2017.
  */
@@ -52,7 +54,7 @@ public class ProgramsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Program>> getAllPrograms(){
-        if(checkPrivileges(1))return ResponseEntity.ok().body(programServices.getAll());
+        if(checkPrivileges(1))return new ResponseEntity<>(programServices.getAll(), HttpStatus.ACCEPTED);
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
