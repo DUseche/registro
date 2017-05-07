@@ -1,72 +1,71 @@
-
+<!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Sistema de gestión de contenidos programáticos</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-</head>
-<body>
-    <script type="text/javascript">
-        cargarProgramas = function(){
-            var promise = function(data){
-                console.log(data);
-                $("#programas").children().remove();
-                for(i = 0; i < data.length; i++){
-                    $("#programas").append("<li id='"+data[i].name+"'>"+data[i].name+"</li>");
+    <head>
+        <meta charset="UTF-8">
+        <title>Sistema de gestión de contenidos programáticos</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var listaProgramas =[];
+
+            function cambiarPagina(number){
+                sessionStorage.programa = listaProgramas[number];
+                window.location.href = "verPrograma.html";
+            }
+
+            cargarProgramas = function(){
+                var promise = function(data){
+                    console.log(data);
+
+                    $("#programas").children().remove();
+                    for(i = 0; i < data.length; i++){
+                        listaProgramas.push(data[i].name);
+                        $("#programas").append("<li>\n<button type='button' onclick='cambiarPagina("+i+")'>\n"+data[i].name+"\n</button>\n</li>");
+                    }
                 }
+                $.get("/programs").then(promise);
             }
-            $.get("/programs").then(promise);
-        };
 
-        $(document).ready(
-            function(){
-                cargarProgramas();
+            function Program(name){
+                this.name = name
             }
-        );
-    </script>
-    <div id="banner">
-        <img src="/banner.png" width="100%">
-    </div>
-    <div id="programs">
-        Programas disponibles
-        <ul id="programas">
 
-        </ul>
-    </div>
-    <p></p>
-    <script type="text/javascript">
-        function Program(name){
-            this.name=name
-        }
+            registrarPrograma = function(){
+                var name = $("#nuevoPrograma").val();
+                var program = new Program(name);
+                $.ajax({
+                    type: "POST",
+                    url: "/programs",
+                    headers: {"X-HTTP-Method-Override": "POST", "Content-Type": "application/json"},
+                    data: JSON.stringify(program)
+                }).fail(function (response) {
+                    console.log(response);
+                    alert(response.responseText);
+                }).then(cargarProgramas());
+            }
 
-        registrarPrograma = function(){
-            var name = $("#nuevoPrograma").val();
-            var program = new Program(name);
-            $.ajax({
-                type: "POST",
-                url: "/programs",
-                headers: {"X-HTTP-Method-Override": "POST", "Content-Type": "application/json"},
-                data: JSON.stringify(program)
-            }).fail(function (response) {
-                console.log(response);
-                alert(response.responseText);
-            }).then(cargarProgramas());
-        };
-
-        verLineas = function(){
-            sessionStorage.programa = $("#verLineas").val();
-            window.location.href = "verPrograma.html";
-        }
-    </script>
-    <input type="text" id="nuevoPrograma" value="Crear un programa"/>
-    <button type="button" onclick="registrarPrograma()">Registrar</button>
-    <p></p>
-    <input type="text" id="verLineas" value="Ver lineas del programa"/>
-    <button type="button" onclick="verLineas()">Consultar</button>
-    <div id="cenefa">
-        Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
-    </div>
-</body>
+            $(document).ready(
+                function(){
+                    cargarProgramas();
+                }
+            )
+        </script>
+        <div id="banner">
+            <img src="/banner.png" width="100%">
+        </div>
+        <div id="programs">
+            <p>Programas disponibles</p>
+            <ul id="programas"></ul>
+        </div>
+        <p></p>
+        <input type="text" id="nuevoPrograma" value="Crear un programa"/>
+        <button type="button" onclick="registrarPrograma()">Registrar</button>
+        <p></p>
+        <div id="cenefa">
+            Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+        </div>
+    </body>
 </html>

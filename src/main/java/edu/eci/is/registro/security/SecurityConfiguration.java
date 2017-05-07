@@ -53,6 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+        //builder.inMemoryAuthentication().withUser("admin").password("admin").authorities("ADMIN_ROLE");
         builder.authenticationProvider(authProvider());
     }
 

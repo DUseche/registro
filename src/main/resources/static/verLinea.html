@@ -8,15 +8,28 @@
     </head>
     <body>
     <script type="text/javascript">
+
+                var listaMaterias = [];
+
+                function modificarMateria(number){
+                    sessionStorage.materia = listaMaterias[number];
+                    window.location.href = "modificarMateria.html";
+                }
+
                 cargarMaterias = function(){
                     var promise = function(data){
                         console.log(data);
                         $("#materias").children().remove();
                         for(i = 0; i < data.courses.length; i++){
-                            $("#materias").append("<li id='"+data.courses[i].name+"'>"+data.courses[i].name+"</li>");
+                            listaMaterias.push(data.courses[i].name);
+                            $("#materias").append("<li>\n<button type='button' onclick='modificarMateria("+i+")'>\n"+data.courses[i].name+"\n</button>\n</li>");
                         }
                     }
                     $.get("/programs/"+sessionStorage.programa+"/"+sessionStorage.linea).then(promise);
+                };
+
+                registrarMateria = function(){
+                    window.location.href = "nuevaMateria.html"
                 };
 
                 $(document).ready(
@@ -32,29 +45,14 @@
         <img src="/banner.png" width="100%">
     </div>
     <div id="courses">
-        Lineas del programa
+        Materias de la linea
         <ul id="materias">
 
         </ul>
     </div>
     <p></p>
-    <script type="text/javascript">
-
-                registrarMateria = function(){
-                    window.location.href = "nuevaMateria.html"
-                };
-
-                modificarMateria = function(){
-                    sessionStorage.materia = $("#modificarMateria").val();
-                    window.location.href = "modificarMateria.html";
-                }
-    </script>
-    <input type="text" id="nuevaMateria" value="Crear una materia"/>
-    <button type="button" onclick="registrarMateria()">Ir</button>
+    <button type="button" onclick="registrarMateria()">Registrar una materia</button>
     <p></p>
-
-    <input type="text" id="modificarMateria" value="Materia a modificar"/>
-    <button type="button" onclick="modificarMateria()">Modificar</button>
     <div id="cenefa">
         Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
     </div>

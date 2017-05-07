@@ -45,9 +45,14 @@ public class ProgramsController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String mail = auth.getName();
         Person holder = personServices.findByMail(mail);
+        if(holder.getProgram() == null)return true;
+        if(holder.getLine() == null){
+            if(program == null) return false;
+            return holder.getProgram().equals(program);
+        }
         if(line == null){
             if(program == null){
-                return true;
+                return false;
             }return holder.getProgram().equals(program);
         }return holder.getProgram().equals(program) && holder.getLine().equals(line);
     }

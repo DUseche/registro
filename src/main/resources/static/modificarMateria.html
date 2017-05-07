@@ -1,0 +1,51 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de gestión de contenidos programáticos</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+</head>
+    <body>
+    <script type="text/javascript">
+                    cargarCampos = function(){
+                        var promise = function(data){
+                            console.log(data);
+                            $("#materias").children().remove();
+                            for(i = 0; i < data.courses.length; i++){
+                                //$("#materias").append("<li id='"+data.courses[i].name+"'>"+data.courses[i].name+"</li>");
+                            }
+                        }
+                        $.get("/programs/"+sessionStorage.programa+"/"+sessionStorage.linea+"/"+sessionStorage.materia).then(promise);
+                    };
+
+                    $(document).ready(
+                        function(){
+                            if(sessionStorage.programa == null || sessionStorage.linea == null || sessionStorage.materia == null){
+                                window.location.href = "home.html";
+                            }
+                            cargarCampos();
+                        }
+                    );
+                </script>
+    <div id="banner">
+        <img src="/banner.png" width="100%">
+    </div>
+    <div id="courses">
+        Campos de la materia
+        <ul id="campos">
+
+        </ul>
+    </div>
+    <p></p>
+    <input type="text" id="nuevaMateria" value="Crear una materia"/>
+    <button type="button" onclick="registrarMateria()">Ir</button>
+    <p></p>
+
+    <input type="text" id="modificarMateria" value="Materia a modificar"/>
+    <button type="button" onclick="modificarMateria()">Modificar</button>
+    <div id="cenefa">
+        Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+    </div>
+    </body>
+</html>
