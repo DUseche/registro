@@ -158,4 +158,32 @@ public class ProgramsController {
         }
         else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
+
+    @RequestMapping(path = "/{program}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateProgram(@PathVariable String program, @RequestBody String newName){
+        if (checkPrivileges(4) && checkCareerAndLine(program, null)) {
+            try {
+                programServices.updateProgram(program, newName);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }catch(Exception ex){
+                ex.printStackTrace();
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+    @RequestMapping(path = "/{program}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateLine(@PathVariable String program, @PathVariable String line, @RequestBody String newName){
+        if (checkPrivileges(3) && checkCareerAndLine(program, line)) {
+            try {
+                programServices.updateLine(program, line, newName);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }catch(Exception ex){
+                ex.printStackTrace();
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
 }

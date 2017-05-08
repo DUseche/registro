@@ -1,12 +1,9 @@
 package edu.eci.is.registro.entities;
 
-import org.hibernate.engine.internal.Cascade;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by David Useche on 30/04/2017.
@@ -15,7 +12,7 @@ import java.util.Set;
 @Table(name = "PROGRAMS")
 public class Program implements Serializable{
 
-    private Set<Line> lines;
+    private List<Line> lines;
 
     private String name;
 
@@ -31,11 +28,11 @@ public class Program implements Serializable{
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "PROGRAMS_name", referencedColumnName = "name", nullable = false)
-    public Set<Line> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 
-    public void setLines(Set<Line> lines) {
+    public void setLines(List<Line> lines) {
         this.lines = lines;
     }
 
@@ -67,9 +64,14 @@ public class Program implements Serializable{
 
     public Line getLineByName(String lineName){
         if(lines.contains(new Line(lineName))){
-            ArrayList<Line> tmp = new ArrayList<>(lines);
-            return tmp.get(tmp.indexOf(new Line(lineName)));
+            return lines.get(lines.indexOf(new Line(lineName)));
         }else return null;
+    }
+
+    public void updateLine(String lineName, String newName){
+        if(lines.contains(new Line((lineName)))){
+            lines.get(lines.indexOf(new Line(lineName))).setName(newName);
+        }
     }
 
     @Override

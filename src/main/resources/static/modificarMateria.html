@@ -8,13 +8,12 @@
 </head>
     <body>
     <script type="text/javascript">
+
                     cargarCampos = function(){
                         var promise = function(data){
                             console.log(data);
-                            $("#materias").children().remove();
-                            for(i = 0; i < data.courses.length; i++){
-                                //$("#materias").append("<li id='"+data.courses[i].name+"'>"+data.courses[i].name+"</li>");
-                            }
+                            $("#campos").children().remove();
+
                         }
                         $.get("/programs/"+sessionStorage.programa+"/"+sessionStorage.linea+"/"+sessionStorage.materia).then(promise);
                     };
@@ -31,11 +30,8 @@
     <div id="banner">
         <img src="/banner.png" width="100%">
     </div>
-    <div id="courses">
-        Campos de la materia
-        <ul id="campos">
+    <div id="campos">
 
-        </ul>
     </div>
     <p></p>
     <input type="text" id="nuevaMateria" value="Crear una materia"/>

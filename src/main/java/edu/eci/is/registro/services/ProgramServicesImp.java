@@ -63,4 +63,25 @@ public class ProgramServicesImp implements ProgramServices{
         }
     }
 
+    @Override
+    public void updateProgram(String programName, String toUpdate) {
+        Program obtained = getByName(programName);
+        if(obtained!=null){
+            obtained.setName(toUpdate);
+            programsRepository.delete(programName);
+            programsRepository.save(obtained);
+        }
+    }
+
+    @Override
+    public void updateLine(String programName, String lineName, String newLine) {
+        Program obtained = getByName(programName);
+        if(obtained!=null){
+            obtained.updateLine(lineName, newLine);
+            programsRepository.delete(programName);
+            programsRepository.save(obtained);
+        }
+    }
+
+
 }
