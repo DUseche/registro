@@ -45,6 +45,24 @@
                 }).then(cargarLineas());
             };
 
+            function Program(name){
+                this.name = name
+            }
+
+            actualizarPrograma = function(){
+                var name = $("#nuevoNombre").val();
+                var program = new Program(name);
+                $.ajax({
+                    type: "PUT",
+                    url: "/programs/"+sessionStorage.programa,
+                    headers: {"X-HTTP-Method-Override": "PUT", "Content-Type": "application/json"},
+                    data: JSON.stringify(program)
+                }).fail(function (response) {
+                    console.log(response);
+                    alert(response.responseText);
+                });
+            }
+
             $(document).ready(
                 function(){
                     if(sessionStorage.programa == null){
@@ -57,6 +75,8 @@
         <div id="banner">
             <img src="/banner.png" width="100%">
         </div>
+        <input type="text" id="nuevoNombre" value="Nuevo nombre del programa"/>
+        <button type="button" onclick="actualizarPrograma()">Actualizar</button>
         <div id="lines">
             Lineas del programa
             <ul id="lineas">

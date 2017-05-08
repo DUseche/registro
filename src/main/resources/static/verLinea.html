@@ -32,6 +32,24 @@
                     window.location.href = "nuevaMateria.html"
                 };
 
+                function Line(name){
+                    this.name=name
+                }
+
+                actualizarLinea = function(){
+                    var name = $("#nuevoNombre").val();
+                    var line = new Line(name);
+                    $.ajax({
+                        type: "PUT",
+                        url: "/programs/"+sessionStorage.programa+"/"+sessionStorage.linea,
+                        headers: {"X-HTTP-Method-Override": "PUT", "Content-Type": "application/json"},
+                        data: JSON.stringify(line)
+                    }).fail(function (response) {
+                        console.log(response);
+                        alert(response.responseText);
+                    });
+                }
+
                 $(document).ready(
                     function(){
                         if(sessionStorage.programa == null || sessionStorage.linea == null){
@@ -44,6 +62,8 @@
     <div id="banner">
         <img src="/banner.png" width="100%">
     </div>
+    <input type="text" id="nuevoNombre" value="Nuevo nombre de la linea"/>
+    <button type="button" onclick="actualizarLinea()">Actualizar</button>
     <div id="courses">
         Materias de la linea
         <ul id="materias">
