@@ -1,10 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sistema de gestión de contenidos programáticos</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
 </head>
 <body>
+<script type="text/javascript">
 
+            function course(name, plans, mnemonic, numeric, objetivo, justificacion, requisitos, horasPresenciales, horasIndependientes, magistral,
+            monitoria, laboratorio, textoPrincipal, otrosTextos, resumenContenido, contenidoDetallado, metodologia, notaUno, notaDos, notaTres,
+            notaLab){
+                this.objective = objetivo;
+                this.name = name;
+                this.studyPlans = plans.split(",");
+                this.mnemonicCode = mnemonic;
+                this.numericCode = numeric;
+                this.justification = justificacion;
+                this.requisites = requisitos.split(",");
+                this.methodology = metodologia.split(",");
+                this.evaluation = {"noteOnePercent":notaUno,"noteTwoPercent":notaDos,"noteThreePercent":notaTres,"noteLabPercent":notaLab};
+                this.weeklyIntensity = {"magistral":magistral,"monitor":monitoria,"lab":laboratorio};
+                this.bibliography = {"principalText":textoPrincipal,"otherTexts":otrosTextos.split(",")};
+                this.credits = {"magistral":};
+            }
+
+            registrarPrograma = function(){
+                var name = $("#nuevoPrograma").val();
+                var program = new Program(name);
+                $.ajax({
+                    type: "POST",
+                    url: "/programs",
+                    headers: {"X-HTTP-Method-Override": "POST", "Content-Type": "application/json"},
+                    data: JSON.stringify(program)
+                }).fail(function (response) {
+                    console.log(response);
+                    alert(response.responseText);
+                }).then(cargarProgramas());
+            }
+
+            $(document).ready(
+                function(){
+                    if(sessionStorage.programa == null || sessionStorage.linea == null){
+                        window.location.href = "home.html";
+                    }
+                }
+            )
+        </script>
+<div id="banner">
+    <img src="/banner.png" width="100%">
+</div>
+<div id="course">
+    <input type='text' id = 'name' value='Nombre'/><br>
+    <input type='text' id = 'studyPlans' value = 'Planes de estudio'/><br>
+    <input type='text' id = 'mnemonic' value = 'Codigo mnemonico'/><br>
+    <input type='number' id = 'numeric' value = '0'/><br>
+    <input type='text' id= 'objetivo' value = 'Objetivo'/><br>
+    <input type='text' id= 'justificacion' value = 'Justificacion'/><br>
+    <input type='text' id= 'requisitos' value = 'Requisitos'/><br>
+    <input type='number' id = 'horasPresenciales' value = '0'/>
+    <input type='number' id = 'horasIndependientes' value = '0'/><br>
+    <input type='number' id = 'magistral' value = '0'/>
+    <input type='number' id = 'monitoria' value = '0'/>
+    <input type='number' id = 'laboratorio' value = '0'/><br>
+    <input type='text' id = 'textoPrincipal' value = 'Texto principal'/><br>
+    <input type='text' id = 'otrosTextos' value = 'Otros textos'/><br>
+    <input type='text' id = 'resumenContenido' value = 'Resumen'/><br>
+    <input type='text' id = 'contenidoDetallado' value = 'Contenido detallado'/><br>
+    <input type='text' id = 'metodologia' value = 'Metodologia'/><br>
+    <input type='number' id = 'notaPrimerTeoria' value = '0'/>
+    <input type='number' id = 'notaSegundoTeoria' value = '0'/>
+    <input type='number' id = 'notaTerceroTeoria' value = '0'/>
+    <input type='number' id = 'notaLaboratorio' value = '0'/><br>
+    <button type='button' id = 'registrar'>Registrar</button><br>
+</div>
+<p></p>
+<input type="text" id="nuevoPrograma" value="Crear un programa"/>
+<button type="button" onclick="registrarPrograma()">Registrar</button>
+<p></p>
+<div id="cenefa">
+    Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+</div>
 </body>
 </html>
