@@ -10,21 +10,40 @@
 <body>
 <script type="text/javascript">
 
-            function course(name, plans, mnemonic, numeric, objetivo, justificacion, requisitos, horasPresenciales, horasIndependientes, magistral,
-            monitoria, laboratorio, textoPrincipal, otrosTextos, resumenContenido, contenidoDetallado, metodologia, notaUno, notaDos, notaTres,
-            notaLab){
-                this.objective = objetivo;
+            function Course(objective, name, studyPlans, mnemonicCode, numericCode, justification, requisites, methodology, evaluation, weeklyIntensity, bibliography, credits, pragmaticContent) {
+                this.objective = objective;
                 this.name = name;
-                this.studyPlans = plans.split(",");
-                this.mnemonicCode = mnemonic;
-                this.numericCode = numeric;
-                this.justification = justificacion;
-                this.requisites = requisitos.split(",");
-                this.methodology = metodologia.split(",");
-                this.evaluation = {"noteOnePercent":notaUno,"noteTwoPercent":notaDos,"noteThreePercent":notaTres,"noteLabPercent":notaLab};
-                this.weeklyIntensity = {"magistral":magistral,"monitor":monitoria,"lab":laboratorio};
-                this.bibliography = {"principalText":textoPrincipal,"otherTexts":otrosTextos.split(",")};
-                this.credits = {"magistral":};
+                this.studyPlans = studyPlans;
+                this.mnemonicCode = mnemonicCode;
+                this.numericCode = numericCode;
+                this.justification = justification;
+                this.requisites = requisites;
+                this.methodology = methodology;
+                this.evaluation = evaluation;
+                this.weeklyIntensity = weeklyIntensity;
+                this.bibliography = bibliography;
+                this.credits = credits;
+                this.pragmaticContent = pragmaticContent;
+            }
+
+            function Evaluation(noteOnePercent, noteTwoPercent, noteThreePercent, noteLabPercent) {
+                this.evaluate = {"noteOnePercent":noteOnePercent,"noteTwoPercent":noteTwoPercent,"noteThreePercent":noteThreePercent,"noteLabPercent":noteLabPercent};
+            }
+
+            function WeeklyIntensity(magistral, monitor, lab) {
+                this.intensity = {"magistral":magistral, "monitor":monitor, "lab":lab};
+            }
+
+            function Bibliography(principalText, otherTexts) {
+                this.books = {"principalText":principalText, "otherTexts":otherTexts};
+            }
+
+            function Credits(magistral, independent) {
+                this.creditHours = {"magistral":magistral, "independent":independent};
+            }
+
+            function PragmaticContent(summary, detailedThemes) {
+                this.pragCont = {"summary":summary,"detailedThemes":detailedThemes};
             }
 
             registrarPrograma = function(){
