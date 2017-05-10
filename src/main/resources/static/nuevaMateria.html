@@ -6,98 +6,52 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="nuevaMateria.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-
-            function Course(objective, name, studyPlans, mnemonicCode, numericCode, justification, requisites, methodology, evaluation, weeklyIntensity, bibliography, credits, pragmaticContent) {
-                this.objective = objective;
-                this.name = name;
-                this.studyPlans = studyPlans;
-                this.mnemonicCode = mnemonicCode;
-                this.numericCode = numericCode;
-                this.justification = justification;
-                this.requisites = requisites;
-                this.methodology = methodology;
-                this.evaluation = evaluation;
-                this.weeklyIntensity = weeklyIntensity;
-                this.bibliography = bibliography;
-                this.credits = credits;
-                this.pragmaticContent = pragmaticContent;
-            }
-
-            function Evaluation(noteOnePercent, noteTwoPercent, noteThreePercent, noteLabPercent) {
-                this.evaluate = {"noteOnePercent":noteOnePercent,"noteTwoPercent":noteTwoPercent,"noteThreePercent":noteThreePercent,"noteLabPercent":noteLabPercent};
-            }
-
-            function WeeklyIntensity(magistral, monitor, lab) {
-                this.intensity = {"magistral":magistral, "monitor":monitor, "lab":lab};
-            }
-
-            function Bibliography(principalText, otherTexts) {
-                this.books = {"principalText":principalText, "otherTexts":otherTexts};
-            }
-
-            function Credits(magistral, independent) {
-                this.creditHours = {"magistral":magistral, "independent":independent};
-            }
-
-            function PragmaticContent(summary, detailedThemes) {
-                this.pragCont = {"summary":summary,"detailedThemes":detailedThemes};
-            }
-
-            registrarCurso= function(){
-                var name = $("#nuevoPrograma").val();
-                var program = new Program(name);
-                $.ajax({
-                    type: "POST",
-                    url: "/programs/",
-                    headers: {"X-HTTP-Method-Override": "POST", "Content-Type": "application/json"},
-                    data: JSON.stringify(program)
-                }).fail(function (response) {
-                    console.log(response);
-                    alert(response.responseText);
-                }).then(cargarProgramas());
-            }
-
-            $(document).ready(
-                function(){
-                    if(sessionStorage.programa == null || sessionStorage.linea == null){
-                        window.location.href = "home.html";
-                    }
-                }
-            )
-        </script>
 <div id="banner">
     <img src="/banner.png" width="100%">
 </div>
 <div id="course">
-    <input type='text' id = 'name' value='Nombre'/><br>
-    <input type='text' id = 'studyPlans' value = 'Planes de estudio'/><br>
-    <input type='text' id = 'mnemonic' value = 'Codigo mnemonico'/><br>
-    <input type='number' id = 'numeric' value = '0'/><br>
-    <input type='text' id= 'objetivo' value = 'Objetivo'/><br>
-    <input type='text' id= 'justificacion' value = 'Justificacion'/><br>
-    <input type='text' id= 'requisitos' value = 'Requisitos'/><br>
-    <input type='number' id = 'horasPresenciales' value = '0'/>
-    <input type='number' id = 'horasIndependientes' value = '0'/><br>
-    <input type='number' id = 'magistral' value = '0'/>
-    <input type='number' id = 'monitoria' value = '0'/>
-    <input type='number' id = 'laboratorio' value = '0'/><br>
-    <input type='text' id = 'textoPrincipal' value = 'Texto principal'/><br>
-    <input type='text' id = 'otrosTextos' value = 'Otros textos'/><br>
-    <input type='text' id = 'resumenContenido' value = 'Resumen'/><br>
-    <input type='text' id = 'contenidoDetallado' value = 'Contenido detallado'/><br>
-    <input type='text' id = 'metodologia' value = 'Metodologia'/><br>
-    <input type='number' id = 'notaPrimerTeoria' value = '0'/>
-    <input type='number' id = 'notaSegundoTeoria' value = '0'/>
-    <input type='number' id = 'notaTerceroTeoria' value = '0'/>
-    <input type='number' id = 'notaLaboratorio' value = '0'/><br>
-    <button type='button' id = 'registrar'>Registrar</button><br>
+    Nombre de la materia<br>
+    <input type='text' id = 'name'/><p>
+    Planes de estudio a los que pertenece (Separados por coma)<br>
+    <input type='text' id = 'studyPlans'/><p>
+    Código mnemonico de la materia<br>
+    <input type='text' id = 'mnemonic'/><p>
+    Código numérico<br>
+    <input type='number' id = 'numeric'/><p>
+    Objetivo de la materia<br>
+    <input type='text' id= 'objetivo'/><p>
+    Justificación de la materia<br>
+    <input type='text' id= 'justificacion'/><p>
+    Siglas de los requisitos de la materia (Separados por coma)<br>
+    <input type='text' id= 'requisitos'/><p>
+    Cantidad de horas de estudio presenciales de la materia<br>
+    <input type='number' id = 'horasPresenciales'/><p>
+    Cantidad de horas de estudio independientes de la materia<br>
+    <input type='number' id = 'horasIndependientes'/><p>
+    Intensidad en horas semanales para exposición magistral, monitoría y laboratorio<br>
+    <input type='number' id = 'magistral'/>
+    <input type='number' id = 'monitoria'/>
+    <input type='number' id = 'laboratorio'/><p>
+    Texto principal de la materia<br>
+    <input type='text' id = 'textoPrincipal'/><p>
+    Textos secundarios, separar títulos por comas<br>
+    <input type='text' id = 'otrosTextos'/><p>
+    Resumen del contenido de la materia<br>
+    <input type='text' id = 'resumenContenido'/><p>
+    Lista de contenidos detallados (Separados por coma)<br>
+    <input type='text' id = 'contenidoDetallado'/><p>
+    Lista de metodologías de la materia (Separadas por coma)<br>
+    <input type='text' id = 'metodologia'/><p>
+    Valores en porcentajes de las notas de primer, segundo y tercer tercio, junto con laboratorio<br>
+    <input type='number' id = 'notaPrimerTeoria'/>
+    <input type='number' id = 'notaSegundoTeoria'/>
+    <input type='number' id = 'notaTerceroTeoria'/>
+    <input type='number' id = 'notaLaboratorio'/><br>
+    <button type='button' id = 'registrar' onclick="registrarCurso()">Registrar</button><br>
 </div>
-<p></p>
-<input type="text" id="nuevoPrograma" value="Crear un programa"/>
-<button type="button" onclick="registrarPrograma()">Registrar</button>
 <p></p>
 <div id="cenefa">
     Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
