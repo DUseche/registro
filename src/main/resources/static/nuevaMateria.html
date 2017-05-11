@@ -12,44 +12,77 @@
 <div id="banner">
     <img src="/banner.png" width="100%">
 </div>
-<div id="course">
-    Nombre de la materia<br>
-    <input type='text' id = 'name'/><p>
-    Planes de estudio a los que pertenece (Separados por coma)<br>
-    <input type='text' id = 'studyPlans'/><p>
-    Código mnemonico de la materia<br>
-    <input type='text' id = 'mnemonic'/><p>
-    Código numérico<br>
-    <input type='number' id = 'numeric'/><p>
-    Objetivo de la materia<br>
-    <input type='text' id= 'objetivo'/><p>
-    Justificación de la materia<br>
-    <input type='text' id= 'justificacion'/><p>
-    Siglas de los requisitos de la materia (Separados por coma)<br>
-    <input type='text' id= 'requisitos'/><p>
-    Cantidad de horas de estudio presenciales de la materia<br>
-    <input type='number' id = 'horasPresenciales'/><p>
-    Cantidad de horas de estudio independientes de la materia<br>
-    <input type='number' id = 'horasIndependientes'/><p>
-    Intensidad en horas semanales para exposición magistral, monitoría y laboratorio<br>
-    <input type='number' id = 'magistral'/>
-    <input type='number' id = 'monitoria'/>
-    <input type='number' id = 'laboratorio'/><p>
-    Texto principal de la materia<br>
-    <input type='text' id = 'textoPrincipal'/><p>
-    Textos secundarios, separar títulos por comas<br>
-    <input type='text' id = 'otrosTextos'/><p>
-    Resumen del contenido de la materia<br>
-    <input type='text' id = 'resumenContenido'/><p>
-    Lista de contenidos detallados (Separados por coma)<br>
-    <input type='text' id = 'contenidoDetallado'/><p>
-    Lista de metodologías de la materia (Separadas por coma)<br>
-    <input type='text' id = 'metodologia'/><p>
-    Valores en porcentajes de las notas de primer, segundo y tercer tercio, junto con laboratorio<br>
-    <input type='number' id = 'notaPrimerTeoria'/>
-    <input type='number' id = 'notaSegundoTeoria'/>
-    <input type='number' id = 'notaTerceroTeoria'/>
-    <input type='number' id = 'notaLaboratorio'/><br>
+<div id="course" align="center">
+    <table id="formulario">
+        <tr>
+            <td>
+                Asignatura: <input type='text' id = 'name' width="100%"/><p>
+            </td>
+        </tr>
+        <tr>
+            <td id="departamento">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Planes de estudio(Separados por coma)<input type='text' id = 'studyPlans'/><p>
+                Código:&#09Mnemónico<input type='text' id = 'mnemonic'/>&#09Numérico<input type='number' id = 'numeric'/><p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1. Objetivo:<br> <input type='text' id= 'objetivo'/><p>
+                2. Justificación:<br> <input type='text' id= 'justificacion'/><p>
+                3. Requisitos académicos:<br> <input type='text' id= 'requisitos'/><p>
+            </td>
+        </tr>
+        <tr border="1px solid #dddddd">
+            <td>
+                4. Créditos académicos:
+            </td>
+            <td>
+                Tiempo presencial (horas)<input type='number' id = 'horasPresenciales'/><p>
+                Tiempo independiente (horas)<input type='number' id = 'horasIndependientes'/><p>
+            </td>
+        </tr>
+        <tr>
+            <td border="1px solid black">
+                5. Intensidad semanal (en horas presenciales)
+            </td>
+            <td>
+                Exposición magistral<input type='number' id = 'magistral'/><p>
+                Monitoría <input type='number' id = 'monitoria'/><p>
+                Laboratorio<input type='number' id = 'laboratorio'/><p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                6. Bibliografía<br>
+                Texto principal:<br>
+                <input type='text' id = 'textoPrincipal'/><p>
+                Otras referencias<br>
+                <input type='text' id = 'otrosTextos'/><p>
+                7. Contenido programático resumido<br>
+                <input type='text' id = 'resumenContenido'/><p>
+                8. Contenido programático detallado (Incluir los objetivos por unidad o tema)<br>
+                <input type='text' id = 'contenidoDetallado'/><p>
+                9. Metodología<br>
+                <input type='text' id = 'metodologia'/><p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                10. Evaluación
+            </td>
+            <td>
+                % Nota 1 teoría<input type='number' id = 'notaPrimerTeoria'/><br>
+                % Nota 2 teoría<input type='number' id = 'notaSegundoTeoria'/><br>
+                % Nota 3 teoría<input type='number' id = 'notaTerceroTeoria'/><br>
+                % Nota laboratorio<input type='number' id = 'notaLaboratorio'/><br>
+            </td>
+        </tr>
+    </table>
     <button type='button' id = 'registrar' onclick="registrarCurso()">Registrar</button><br>
 </div>
 <p></p>

@@ -67,7 +67,9 @@
             $(document).ready(
                 function(){
                     if(sessionStorage.programa == null || sessionStorage.linea == null){
-                        window.location.href = "home.html";
+                        //window.location.href = "home.html";
                     }
+                    $("#departamento").children().remove();
+                    $("#departamento").append("Departamento: "+sessionStorage.programa+"<p>");
                 }
             )
