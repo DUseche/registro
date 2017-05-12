@@ -1,5 +1,7 @@
 package edu.eci.is.registro.entities;
 
+import org.owasp.esapi.ESAPI;
+
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
@@ -15,8 +17,8 @@ public class PragmaticContent implements Serializable{
     private String detailedThemes;
 
     public PragmaticContent(String summary, String detailedThemes) {
-        this.summary = summary;
-        this.detailedThemes = detailedThemes;
+        if(ESAPI.validator().isValidInput("Set summary", summary, "SafeString", 500, true))this.summary = summary;
+        if(ESAPI.validator().isValidInput("Set detailed themes", detailedThemes, "SafeString", 500, true))this.detailedThemes = detailedThemes;
     }
 
     public PragmaticContent() {
@@ -28,7 +30,7 @@ public class PragmaticContent implements Serializable{
     }
 
     public void setSummary(String summary) {
-        this.summary = summary;
+        if(ESAPI.validator().isValidInput("Set summary", summary, "SafeString", 500, true))this.summary = summary;
     }
 
     @Column(name = "detailedThemes")
@@ -37,7 +39,7 @@ public class PragmaticContent implements Serializable{
     }
 
     public void setDetailedThemes(String detailedThemes) {
-        this.detailedThemes = detailedThemes;
+        if(ESAPI.validator().isValidInput("Set detailed themes", detailedThemes, "SafeString", 500, true))this.detailedThemes = detailedThemes;
     }
 
     @Override

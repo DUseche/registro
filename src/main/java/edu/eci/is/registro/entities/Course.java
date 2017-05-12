@@ -1,5 +1,7 @@
 package edu.eci.is.registro.entities;
 
+import org.owasp.esapi.ESAPI;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -30,14 +32,14 @@ public class Course implements Serializable{
     }
 
     public Course(String objective, String name, String studyPlans, String mnemonicCode, Integer numericCode, String justification, String requisites, String methodology, Evaluation evaluation, WeeklyIntensity weeklyIntensity, Bibliography bibliography, Credits credits, PragmaticContent pragmaticContent, Term term) {
-        this.objective = objective;
-        this.name = name;
-        this.studyPlans = studyPlans;
-        this.mnemonicCode = mnemonicCode;
+        if(ESAPI.validator().isValidInput("Set objective", objective, "SafeString", 500, true))this.objective = objective;
+        if(ESAPI.validator().isValidInput("Set name", name, "SafeString", 100, false))this.name = name;
+        if(ESAPI.validator().isValidInput("Set study plans", studyPlans, "SafeString", 100, true))this.studyPlans = studyPlans;
+        if(ESAPI.validator().isValidInput("Set mnemonic code", mnemonicCode, "SafeString", 10, true))this.mnemonicCode = mnemonicCode;
         this.numericCode = numericCode;
-        this.justification = justification;
-        this.requisites = requisites;
-        this.methodology = methodology;
+        if(ESAPI.validator().isValidInput("Set justification", justification, "SafeString", 500, true))this.justification = justification;
+        if(ESAPI.validator().isValidInput("Set requisites", requisites, "SafeString", 100, true))this.requisites = requisites;
+        if(ESAPI.validator().isValidInput("Set methodology", methodology, "SafeString", 500, true))this.methodology = methodology;
         this.evaluation = evaluation;
         this.weeklyIntensity = weeklyIntensity;
         this.bibliography = bibliography;
@@ -55,7 +57,7 @@ public class Course implements Serializable{
     }
 
     public void setRequisites(String requisites) {
-        this.requisites = requisites;
+        if(ESAPI.validator().isValidInput("Set requisites", requisites, "SafeString", 100, true))this.requisites = requisites;
     }
     @Column(name = "objective")
     public String getObjective() {
@@ -63,7 +65,7 @@ public class Course implements Serializable{
     }
 
     public void setObjective(String objective) {
-        this.objective = objective;
+        if(ESAPI.validator().isValidInput("Set objective", objective, "SafeString", 500, true))this.objective = objective;
     }
 
     @Id
@@ -73,7 +75,7 @@ public class Course implements Serializable{
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(ESAPI.validator().isValidInput("Set name", name, "SafeString", 100, false))this.name = name;
     }
 
     @Column(name = "studyPlans")
@@ -82,7 +84,7 @@ public class Course implements Serializable{
     }
 
     public void setStudyPlans(String studyPlans) {
-        this.studyPlans = studyPlans;
+        if(ESAPI.validator().isValidInput("Set study plans", studyPlans, "SafeString", 100, true))this.studyPlans = studyPlans;
     }
 
     @Column(name = "mnemonic")
@@ -91,7 +93,7 @@ public class Course implements Serializable{
     }
 
     public void setMnemonicCode(String mnemonicCode) {
-        this.mnemonicCode = mnemonicCode;
+        if(ESAPI.validator().isValidInput("Set mnemonic code", mnemonicCode, "SafeString", 10, true))this.mnemonicCode = mnemonicCode;
     }
 
     @Column(name = "code")
@@ -109,7 +111,7 @@ public class Course implements Serializable{
     }
 
     public void setJustification(String justification) {
-        this.justification = justification;
+        if(ESAPI.validator().isValidInput("Set justification", justification, "SafeString", 500, true))this.justification = justification;
     }
 
     @Column(name = "methodology")
@@ -118,7 +120,7 @@ public class Course implements Serializable{
     }
 
     public void setMethodology(String methodology) {
-        this.methodology = methodology;
+        if(ESAPI.validator().isValidInput("Set methodology", methodology, "SafeString", 500, true))this.methodology = methodology;
     }
 
     @Embedded

@@ -1,5 +1,7 @@
 package edu.eci.is.registro.entities;
 
+import org.owasp.esapi.ESAPI;
+
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
@@ -15,8 +17,8 @@ public class Bibliography implements Serializable{
     private String otherTexts;
 
     public Bibliography(String principalText, String otherTexts) {
-        this.principalText = principalText;
-        this.otherTexts = otherTexts;
+        if(ESAPI.validator().isValidInput("Set principal text", principalText, "SafeString", 255, true))this.principalText = principalText;
+        if(ESAPI.validator().isValidInput("Set other texts", otherTexts, "SafeString", 1000, true))this.otherTexts = otherTexts;
     }
 
     public Bibliography(String principalText) {
@@ -32,7 +34,7 @@ public class Bibliography implements Serializable{
     }
 
     public void setPrincipalText(String principalText) {
-        this.principalText = principalText;
+        if(ESAPI.validator().isValidInput("Set principal text", principalText, "SafeString", 255, true))this.principalText = principalText;
     }
 
     @Column(name = "otherTexts")
@@ -41,7 +43,7 @@ public class Bibliography implements Serializable{
     }
 
     public void setOtherTexts(String otherTexts) {
-        this.otherTexts = otherTexts;
+        if(ESAPI.validator().isValidInput("Set other texts", otherTexts, "SafeString", 1000, true))this.otherTexts = otherTexts;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class Line implements Serializable{
     }
 
     public Line(String name) {
-        this.name = name;
+        if(ESAPI.validator().isValidInput("Set name", name, "SafeString", 100, false))this.name = name;
     }
 
     public Line() {
