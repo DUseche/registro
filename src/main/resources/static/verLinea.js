@@ -35,8 +35,8 @@
                         headers: {"X-HTTP-Method-Override": "PUT", "Content-Type": "application/json"},
                         data: JSON.stringify(line)
                     }).fail(function (response) {
-                        console.log(response);
-                        alert(response.responseText);
+                        console.log("Error al agregar");
+                        alert("Error al agregar");
                     });
                 }
 

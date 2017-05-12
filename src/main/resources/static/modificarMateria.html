@@ -5,41 +5,87 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="modificarMateria.js"></script>
 </head>
     <body>
-    <script type="text/javascript">
-
-                    cargarCampos = function(){
-                        var promise = function(data){
-                            console.log(data);
-                            $("#campos").children().remove();
-
-                        }
-                        $.get("/programs/"+sessionStorage.programa+"/"+sessionStorage.linea+"/"+sessionStorage.materia).then(promise);
-                    };
-
-                    $(document).ready(
-                        function(){
-                            if(sessionStorage.programa == null || sessionStorage.linea == null || sessionStorage.materia == null){
-                                window.location.href = "home.html";
-                            }
-                            cargarCampos();
-                        }
-                    );
-                </script>
     <div id="banner">
         <img src="/banner.png" width="100%">
     </div>
-    <div id="campos">
+    <div id="course" align="center">
+        <table id="formulario">
+            <tr>
+                <td>
+                    Asignatura: <input type='text' id = 'name' width="100%"/><p>
+                </td>
+            </tr>
+            <tr>
+                <td id="departamento">
 
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Planes de estudio<input type='text' id = 'studyPlans'/><p>
+                    Código:&#09Mnemónico<input type='text' id = 'mnemonic'/>&#09Numérico<input type='number' id = 'numeric'/><p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    1. Objetivo:<br> <textarea cols="50" rows="5" id= 'objetivo'></textarea><p>
+                    2. Justificación:<br> <textarea cols="50" rows="5" id= 'justificacion'></textarea><p>
+                    3. Requisitos académicos:<br> <input type='text' id= 'requisitos' size="50"/><p>
+                </td>
+            </tr>
+            <tr border="1px solid #dddddd">
+                <td>
+                    4. Créditos académicos:
+                </td>
+                <td>
+                    Tiempo presencial (horas)<input type='number' id = 'horasPresenciales'/><p>
+                    Tiempo independiente (horas)<input type='number' id = 'horasIndependientes'/><p>
+                </td>
+            </tr>
+            <tr>
+                <td border="1px solid black">
+                    5. Intensidad semanal (en horas presenciales)
+                </td>
+                <td>
+                    Exposición magistral<input type='number' id = 'magistral'/><p>
+                    Monitoría <input type='number' id = 'monitoria'/><p>
+                    Laboratorio<input type='number' id = 'laboratorio'/><p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    6. Bibliografía<br>
+                    Texto principal:<br>
+                    <textarea type='text' cols="50" rows="5" id = 'textoPrincipal'></textarea><p>
+                    Otras referencias<br>
+                    <textarea cols="50" rows="5" id = 'otrosTextos'></textarea><p>
+                    7. Contenido programático resumido<br>
+                    <input type='text' id = 'resumenContenido' size="80"/><p>
+                    8. Contenido programático detallado (Incluir los objetivos por unidad o tema)<br>
+                    <textarea cols="80" rows="10" id = 'contenidoDetallado'></textarea><p>
+                    9. Metodología<br>
+                    <textarea cols="80" rows="10" id = 'metodologia'></textarea><p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    10. Evaluación
+                </td>
+                <td>
+                    % Nota 1 teoría<input type='number' id = 'notaPrimerTeoria'/><br>
+                    % Nota 2 teoría<input type='number' id = 'notaSegundoTeoria'/><br>
+                    % Nota 3 teoría<input type='number' id = 'notaTerceroTeoria'/><br>
+                    % Nota laboratorio<input type='number' id = 'notaLaboratorio'/><br>
+                </td>
+            </tr>
+        </table>
+        <button type='button' id = 'modificar' onclick="guardarCambios()">Guardar cambios</button>
+        <button type='button' id = 'regresar' onclick="regresar()">Regresar</button><br>
     </div>
     <p></p>
-    <input type="text" id="nuevaMateria" value="Crear una materia"/>
-    <button type="button" onclick="registrarMateria()">Ir</button>
-    <p></p>
-
-    <input type="text" id="modificarMateria" value="Materia a modificar"/>
-    <button type="button" onclick="modificarMateria()">Modificar</button>
     <div id="cenefa">
         Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
     </div>
