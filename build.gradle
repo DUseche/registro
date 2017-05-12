@@ -44,7 +44,7 @@ dependencies {
 	compile('javax.servlet:javax.servlet-api')
 
 	compile("com.h2database:h2")
-
+	compile('org.owasp.esapi:esapi:2.1.0')
 	compile("org.hibernate:hibernate-core")
 	compile("org.hibernate:hibernate-entitymanager")
 	compile("org.hibernate:hibernate-validator")

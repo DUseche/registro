@@ -1,5 +1,8 @@
 package edu.eci.is.registro.entities;
 
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.errors.ValidationException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,8 +25,8 @@ public class Program implements Serializable{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name){
+        if(ESAPI.validator().isValidInput("Set name", name, "SafeString", 100, false))this.name = name;
     }
 
     @OneToMany(cascade = CascadeType.ALL)

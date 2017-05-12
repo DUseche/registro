@@ -1,5 +1,7 @@
 package edu.eci.is.registro.entities;
 
+import org.owasp.esapi.ESAPI;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class Line implements Serializable{
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(ESAPI.validator().isValidInput("Set name", name, "SafeString", 100, false))this.name = name;
     }
 
     @OneToMany(cascade = CascadeType.ALL)
