@@ -40,6 +40,9 @@
                     });
                 }
 
+            regresar = function(){
+                window.location.href = "verPrograma.html";
+            }
                 $(document).ready(
                     function(){
                         if(sessionStorage.programa == null || sessionStorage.linea == null){

@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * Created by David Useche on 30/04/2017.
@@ -13,9 +12,9 @@ import java.util.Set;
 public class PragmaticContent implements Serializable{
 
     private String summary;
-    private Set<String> detailedThemes;
+    private String detailedThemes;
 
-    public PragmaticContent(String summary, Set<String> detailedThemes) {
+    public PragmaticContent(String summary, String detailedThemes) {
         this.summary = summary;
         this.detailedThemes = detailedThemes;
     }
@@ -32,12 +31,12 @@ public class PragmaticContent implements Serializable{
         this.summary = summary;
     }
 
-    @ElementCollection(targetClass = String.class)
-    public Set<String> getDetailedThemes() {
+    @Column(name = "detailedThemes")
+    public String getDetailedThemes() {
         return detailedThemes;
     }
 
-    public void setDetailedThemes(Set<String> detailedThemes) {
+    public void setDetailedThemes(String detailedThemes) {
         this.detailedThemes = detailedThemes;
     }
 

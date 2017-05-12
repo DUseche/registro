@@ -2,7 +2,6 @@ package edu.eci.is.registro.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * Created by David Useche on 30/04/2017.
@@ -13,12 +12,12 @@ public class Course implements Serializable{
 
     private String objective;
     private String name;
-    private Set<Integer> studyPlans;
+    private String studyPlans;
     private String mnemonicCode;
     private Integer numericCode;
     private String justification;
-    private Set<String> requisites;
-    private Set<String> methodology;
+    private String requisites;
+    private String methodology;
     private Evaluation evaluation;
     private WeeklyIntensity weeklyIntensity;
     private Bibliography bibliography;
@@ -30,7 +29,7 @@ public class Course implements Serializable{
         this.name = name;
     }
 
-    public Course(String objective, String name, Set<Integer> studyPlans, String mnemonicCode, Integer numericCode, String justification, Set<String> requisites, Set<String> methodology, Evaluation evaluation, WeeklyIntensity weeklyIntensity, Bibliography bibliography, Credits credits, PragmaticContent pragmaticContent, Term term) {
+    public Course(String objective, String name, String studyPlans, String mnemonicCode, Integer numericCode, String justification, String requisites, String methodology, Evaluation evaluation, WeeklyIntensity weeklyIntensity, Bibliography bibliography, Credits credits, PragmaticContent pragmaticContent, Term term) {
         this.objective = objective;
         this.name = name;
         this.studyPlans = studyPlans;
@@ -50,12 +49,12 @@ public class Course implements Serializable{
     public Course() {
     }
 
-    @ElementCollection(targetClass = String.class)
-    public Set<String> getRequisites() {
+    @Column(name = "requisites")
+    public String getRequisites() {
         return requisites;
     }
 
-    public void setRequisites(Set<String> requisites) {
+    public void setRequisites(String requisites) {
         this.requisites = requisites;
     }
     @Column(name = "objective")
@@ -77,12 +76,12 @@ public class Course implements Serializable{
         this.name = name;
     }
 
-    @ElementCollection(targetClass = Integer.class)
-    public Set<Integer> getStudyPlans() {
+    @Column(name = "studyPlans")
+    public String getStudyPlans() {
         return studyPlans;
     }
 
-    public void setStudyPlans(Set<Integer> studyPlans) {
+    public void setStudyPlans(String studyPlans) {
         this.studyPlans = studyPlans;
     }
 
@@ -113,12 +112,12 @@ public class Course implements Serializable{
         this.justification = justification;
     }
 
-    @ElementCollection(targetClass = String.class)
-    public Set<String> getMethodology() {
+    @Column(name = "methodology")
+    public String getMethodology() {
         return methodology;
     }
 
-    public void setMethodology(Set<String> methodology) {
+    public void setMethodology(String methodology) {
         this.methodology = methodology;
     }
 

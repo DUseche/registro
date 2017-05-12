@@ -37,7 +37,11 @@ public class ProgramsController {
         Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
         String toCast = ((GrantedAuthority)authorities.toArray()[0]).getAuthority();
         System.out.println("La autoridad del usuario logueado es "+toCast);
-        if(Integer.parseInt(toCast)>=toCheck)return true;
+        try{
+            if(Integer.parseInt(toCast)>=toCheck)return true;
+        }catch (Exception ex){
+            return false;
+        }
         return false;
     }
 

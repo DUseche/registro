@@ -26,15 +26,15 @@
         </tr>
         <tr>
             <td>
-                Planes de estudio(Separados por coma)<input type='text' id = 'studyPlans'/><p>
+                Planes de estudio<input type='text' id = 'studyPlans'/><p>
                 Código:&#09Mnemónico<input type='text' id = 'mnemonic'/>&#09Numérico<input type='number' id = 'numeric'/><p>
             </td>
         </tr>
         <tr>
             <td>
-                1. Objetivo:<br> <input type='text' id= 'objetivo'/><p>
-                2. Justificación:<br> <input type='text' id= 'justificacion'/><p>
-                3. Requisitos académicos:<br> <input type='text' id= 'requisitos'/><p>
+                1. Objetivo:<br> <textarea cols="50" rows="5" id= 'objetivo'></textarea><p>
+                2. Justificación:<br> <textarea cols="50" rows="5" id= 'justificacion'></textarea><p>
+                3. Requisitos académicos:<br> <input type='text' id= 'requisitos' size="50"/><p>
             </td>
         </tr>
         <tr border="1px solid #dddddd">
@@ -60,15 +60,15 @@
             <td>
                 6. Bibliografía<br>
                 Texto principal:<br>
-                <input type='text' id = 'textoPrincipal'/><p>
+                <textarea type='text' cols="50" rows="5" id = 'textoPrincipal'></textarea><p>
                 Otras referencias<br>
-                <input type='text' id = 'otrosTextos'/><p>
+                <textarea cols="50" rows="5" id = 'otrosTextos'></textarea><p>
                 7. Contenido programático resumido<br>
-                <input type='text' id = 'resumenContenido'/><p>
+                <input type='text' id = 'resumenContenido' size="80"/><p>
                 8. Contenido programático detallado (Incluir los objetivos por unidad o tema)<br>
-                <input type='text' id = 'contenidoDetallado'/><p>
+                <textarea cols="80" rows="10" id = 'contenidoDetallado'></textarea><p>
                 9. Metodología<br>
-                <input type='text' id = 'metodologia'/><p>
+                <textarea cols="80" rows="10" id = 'metodologia'></textarea><p>
             </td>
         </tr>
         <tr>
@@ -83,7 +83,8 @@
             </td>
         </tr>
     </table>
-    <button type='button' id = 'registrar' onclick="registrarCurso()">Registrar</button><br>
+    <button type='button' id = 'registrar' onclick="registrarCurso()">Registrar</button>
+    <button type='button' id = 'regresar' onclick="regresar()">Regresar</button><br>
 </div>
 <p></p>
 <div id="cenefa">

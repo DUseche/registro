@@ -5,79 +5,15 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+        <script src="verPrograma.js"></script>
     </head>
     <body>
-        <script type="text/javascript">
-            var listaLineas = [];
-
-            function cambiarPagina(number){
-                sessionStorage.linea = listaLineas[number];
-                window.location.href = "verLinea.html";
-            }
-
-            cargarLineas = function(){
-                var promise = function(data){
-                    console.log(data);
-                    $("#lineas").children().remove();
-                    for(i = 0; i < data.lines.length; i++){
-                        listaLineas.push(data.lines[i].name);
-                        $("#lineas").append("<li>\n<button type='button' onclick='cambiarPagina("+i+")'>\n"+data.lines[i].name+"\n</button>\n</li>");
-                    }
-                }
-                $.get("/programs/"+sessionStorage.programa).then(promise);
-            };
-
-            function Line(name){
-                this.name=name
-            }
-
-            registrarLinea = function(){
-                var name = $("#nuevaLinea").val();
-                var line = new Line(name);
-                $.ajax({
-                    type: "POST",
-                    url: "/programs/"+sessionStorage.programa,
-                    headers: {"X-HTTP-Method-Override": "POST", "Content-Type": "application/json"},
-                    data: JSON.stringify(line)
-                }).fail(function (response) {
-                    console.log(response);
-                    alert(response.responseText);
-                }).then(cargarLineas());
-            };
-
-            function Program(name){
-                this.name = name
-            }
-
-            actualizarPrograma = function(){
-                var name = $("#nuevoNombre").val();
-                var program = new Program(name);
-                $.ajax({
-                    type: "PUT",
-                    url: "/programs/"+sessionStorage.programa,
-                    headers: {"X-HTTP-Method-Override": "PUT", "Content-Type": "application/json"},
-                    data: JSON.stringify(program)
-                }).fail(function (response) {
-                    console.log(response);
-                    alert(response.responseText);
-                });
-            }
-
-            $(document).ready(
-                function(){
-                    if(sessionStorage.programa == null){
-                        window.location.href = "home.html";
-                    }
-                    cargarLineas();
-                }
-            );
-        </script>
         <div id="banner">
             <img src="/banner.png" width="100%">
         </div>
         <input type="text" id="nuevoNombre" value="Nuevo nombre del programa"/>
         <button type="button" onclick="actualizarPrograma()">Actualizar</button>
-        <div id="lines">
+        <div id="lines" align="center">
             Lineas del programa
             <ul id="lineas">
 
@@ -86,6 +22,7 @@
         <p></p>
         <input type="text" id="nuevaLinea" value="Crear una linea"/>
         <button type="button" onclick="registrarLinea()">Registrar</button>
+        <button type="button" onclick="regresar()">Regresar</button>
         <p></p>
         <div id="cenefa">
             Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017

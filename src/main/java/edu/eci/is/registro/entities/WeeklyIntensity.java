@@ -10,11 +10,11 @@ import java.io.Serializable;
 @Embeddable
 public class WeeklyIntensity implements Serializable{
 
-    private String magistral;
-    private String monitor;
-    private String lab;
+    private Integer magistral;
+    private Integer monitor;
+    private Integer lab;
 
-    public WeeklyIntensity(String magistral, String monitor, String lab) {
+    public WeeklyIntensity(Integer magistral, Integer monitor, Integer lab) {
         this.magistral = magistral;
         this.monitor = monitor;
         this.lab = lab;
@@ -24,29 +24,29 @@ public class WeeklyIntensity implements Serializable{
     }
 
     @Column(name = "magistralIntensity")
-    public String getMagistral() {
+    public Integer getMagistral() {
         return magistral;
     }
 
-    public void setMagistral(String magistral) {
+    public void setMagistral(Integer magistral) {
         this.magistral = magistral;
     }
 
     @Column(name = "monitorIntensity")
-    public String getMonitor() {
+    public Integer getMonitor() {
         return monitor;
     }
 
-    public void setMonitor(String monitor) {
+    public void setMonitor(Integer monitor) {
         this.monitor = monitor;
     }
 
     @Column(name = "labIntensity")
-    public String getLab() {
+    public Integer getLab() {
         return lab;
     }
 
-    public void setLab(String lab) {
+    public void setLab(Integer lab) {
         this.lab = lab;
     }
 

@@ -38,17 +38,17 @@
             registrarCurso= function(){
                 var evaluacion = new Evaluation($("#notaPrimerTeoria").val(),$("#notaSegundoTeoria").val(),$("#notaTerceroTeoria").val(),$("#notaLaboratorio").val());
                 var intensidadSemanal = new WeeklyIntensity($("#magistral").val(),$("#monitoria").val(),$("#laboratorio").val());
-                var bibliografia = new Bibliography($("#textoPrincipal").val(),$("#otrosTextos").val().split(","));
+                var bibliografia = new Bibliography($("#textoPrincipal").val(),$("#otrosTextos").val());
                 var creditos = new Credits($("#horasPresenciales").val(), $("#horasIndependientes").val());
-                var contenido = new PragmaticContent($("#resumenContenido").val(),$("#contenidoDetallado").val().split(","));
+                var contenido = new PragmaticContent($("#resumenContenido").val(),$("#contenidoDetallado").val());
                 var name = $("#name").val();
-                var plans = $("#studyPlans").val().split(",");
+                var plans = $("#studyPlans").val();
                 var nemonico = $("#mnemonic").val();
                 var codigo = $("#numeric").val();
                 var objetivoMateria = $("#objetivo").val();
                 var justificacion = $("#justificacion").val();
-                var requisitos = $("#requisitos").val().split(",");
-                var metodo = $("#metodologia").val().split(",");
+                var requisitos = $("#requisitos").val();
+                var metodo = $("#metodologia").val();
 
                 var curso = new Course(objetivoMateria, name, plans,nemonico,codigo,justificacion,requisitos,metodo,evaluacion,intensidadSemanal,bibliografia,creditos,contenido);
                 console.log(JSON.stringify(curso));
@@ -62,6 +62,10 @@
                         console.log(response);
                         alert(response.responseText);
                     });
+            }
+
+            regresar = function(){
+                window.location.href = "verLinea.html";
             }
 
             $(document).ready(

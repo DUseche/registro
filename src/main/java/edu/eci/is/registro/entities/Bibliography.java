@@ -3,10 +3,7 @@ package edu.eci.is.registro.entities;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by David Useche on 30/04/2017.
@@ -15,9 +12,9 @@ import java.util.Set;
 public class Bibliography implements Serializable{
 
     private String principalText;
-    private Set<String> otherTexts;
+    private String otherTexts;
 
-    public Bibliography(String principalText, Set<String> otherTexts) {
+    public Bibliography(String principalText, String otherTexts) {
         this.principalText = principalText;
         this.otherTexts = otherTexts;
     }
@@ -38,12 +35,12 @@ public class Bibliography implements Serializable{
         this.principalText = principalText;
     }
 
-    @ElementCollection(targetClass = String.class)
-    public Set<String> getOtherTexts() {
+    @Column(name = "otherTexts")
+    public String getOtherTexts() {
         return otherTexts;
     }
 
-    public void setOtherTexts(Set<String> otherTexts) {
+    public void setOtherTexts(String otherTexts) {
         this.otherTexts = otherTexts;
     }
 
