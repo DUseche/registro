@@ -46,6 +46,6 @@ dependencies {
 	compile("org.hibernate:hibernate-validator")
 	compile("ch.qos.logback:logback-classic")
 	compile("commons-dbcp:commons-dbcp")
-
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	compile ("mysql:mysql-connector-java:5.1.38")
 }
