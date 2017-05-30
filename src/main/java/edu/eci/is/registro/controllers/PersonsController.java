@@ -8,15 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 /**
- * Created by Juan Pablo on 18/02/2017.
+ * Created by David Useche on 18/02/2017.
  */
 @RestController
 @RequestMapping("/user")
@@ -42,6 +39,18 @@ public class PersonsController {
         Person newUser = user;
 
         return new ResponseEntity<>(newUser, HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(path = "/update/{mail}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@PathVariable String mail, @RequestBody Person person) {
+        Person getted = personsServices.findByMail(mail);
+        getted.setAuthority(person.getAuthority());
+        getted.setLine(person.getLine());
+        getted.setProgram(person.getProgram());
+        getted.setPassword(bCryptPasswordEncoder().encode(person.getPassword()));
+        personsServices.update(getted);
+
+        return new ResponseEntity<>(getted, HttpStatus.ACCEPTED);
     }
 
 }

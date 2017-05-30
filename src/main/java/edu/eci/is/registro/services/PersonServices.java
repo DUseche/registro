@@ -8,4 +8,5 @@ import edu.eci.is.registro.entities.Person;
 public interface PersonServices {
     void save(Person toSave);
     Person findByMail(String mail);
+    void update(Person toUpdate);
 }

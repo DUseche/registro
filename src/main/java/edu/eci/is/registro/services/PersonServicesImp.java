@@ -37,4 +37,10 @@ public class PersonServicesImp implements PersonServices {
     public Person findByMail(String mail) {
         return personsRepository.findOne(mail);
     }
+
+    @Override
+    public void update(Person toUpdate) {
+        personsRepository.saveAndFlush(toUpdate);
+    }
+
 }
