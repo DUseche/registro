@@ -37,7 +37,6 @@ CREATE TABLE `PROGRAM_LINES`(
 
 CREATE TABLE `PERSONS_AUTH`(
 	`mail` varchar(255) NOT NULL,
-	`pass` varchar(255) NOT NULL,
 	`authority` varchar(255) NOT NULL,
 	`program` varchar(255),
 	`line` varchar(255),
@@ -54,5 +53,7 @@ ALTER TABLE `PROGRAM_LINES` ADD CONSTRAINT `PROGRAM_LINES_PROGRAMS` FOREIGN KEY(
 
 INSERT INTO PROGRAMS (name) VALUES ("Ingenieria de sistemas");
 INSERT INTO PROGRAM_LINES (name, PROGRAMS_name) VALUES ("Plataformas","Ingenieria de sistemas");
+INSERT INTO PERSONS_AUTH (mail,authority) VALUES ("david.useche@mail.escuelaing.edu.co","4");
+INSERT INTO PERSONS_AUTH (mail,authority) VALUES ("daniela.torres-mi@mail.escuelaing.edu.co","3");
 
 

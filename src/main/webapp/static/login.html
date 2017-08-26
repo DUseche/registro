@@ -1,28 +1,28 @@
+<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <title>Sistema de gestión de contenidos programáticos</title>
-        <link rel="stylesheet" type="text/css" href="static/styles.css">
+        <link rel="stylesheet" type="text/css" href="styles.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-        <script src="verLinea.js"></script>
+        <script src="login.js"></script>
     </head>
     <body>
     <div id="banner">
         <img src="/static/banner.png" width="100%">
     </div>
-    <input type="text" id="nuevoNombre" value="Nuevo nombre de la linea"/>
-    <button type="button" onclick="actualizarLinea()">Actualizar</button>
-    <div id="courses" align="center">
-        Materias de la linea
-        <ul id="materias">
+    <form>
+        <div class="container">
+            <label><b>Username</b></label>
+            <input class="loginText" type="text" placeholder="Enter Username" id="username" required><p></p>
 
-        </ul>
-    </div>
-    <p></p>
-    <button type="button" onclick="registrarMateria()">Registrar una materia</button>
-    <button type="button" onclick="regresar()">Regresar</button>
-    <p></p>
+            <label><b>Password</b></label>
+            <input class="loginText" type="password" placeholder="Enter Password" id="password" required><p></p>
+
+            <button type="submit" onclick="autenticar()">Login</button>
+        </div>
+    </form>
     <div id="cenefa">
         Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
     </div>

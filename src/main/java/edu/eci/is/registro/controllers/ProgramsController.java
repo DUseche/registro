@@ -36,7 +36,8 @@ public class ProgramsController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
         String toCast = ((GrantedAuthority)authorities.toArray()[0]).getAuthority();
-        System.out.println("La autoridad del usuario logueado es "+toCast);
+        System.out.println("La autenticacion es: \n"+auth.toString());
+        System.out.println(auth.getClass().getName());
         try{
             if(Integer.parseInt(toCast)>=toCheck)return true;
         }catch (Exception ex){

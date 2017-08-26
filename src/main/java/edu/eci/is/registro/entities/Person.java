@@ -11,22 +11,22 @@ import java.io.Serializable;
 public class Person implements Serializable{
 
     private String mail;
-    private String password;
+    //private String password;
     private String authority;
     private String program;
     private String line;
 
     protected Person(){}
 
-    public Person(String mail, String password, String authority) {
+    public Person(String mail/*, String password*/, String authority) {
         this.mail = mail;
-        this.password = password;
+        //this.password = password;
         this.authority = authority;
     }
 
-    public Person(String mail, String password, String authority, String program, String line) {
+    public Person(String mail/*, String password*/, String authority, String program, String line) {
         this.mail = mail;
-        this.password = password;
+        //this.password = password;
         this.authority = authority;
         this.program = program;
         this.line = line;
@@ -41,13 +41,13 @@ public class Person implements Serializable{
         this.mail = mail;
     }
 
-    @Column(name = "pass", nullable = false)
+    /*@Column(name = "pass", nullable = false)
     public String getPassword() {
         return password;
     }
     public void setPassword(String password) {
         this.password = password;
-    }
+    }*/
 
     @Column(name = "authority", nullable = false)
     public String getAuthority() { return authority; }

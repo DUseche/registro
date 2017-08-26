@@ -33,7 +33,7 @@ public class UsersDetailsServices implements UserDetailsService {
         grantedAuthorities.add(new SimpleGrantedAuthority(newPerson.getAuthority()));
 
         return new User(newPerson.getMail()
-                , newPerson.getPassword()
+                , /*newPerson.getPassword()*/"Algo"
                 , grantedAuthorities);
     }
 }

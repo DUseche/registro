@@ -38,7 +38,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService usersDetailsService;
 
-    @Bean
+    @Autowired
+    private OutlookAuthenticator outlookAuthenticator;
+
+    /*@Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -49,12 +52,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authProvider.setUserDetailsService(usersDetailsService);
         authProvider.setPasswordEncoder(bCryptPasswordEncoder());
         return authProvider;
-    }
+    }*/
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         //builder.inMemoryAuthentication().withUser("admin").password("admin").authorities("ADMIN_ROLE");
-        builder.authenticationProvider(authProvider());
+        //builder.authenticationProvider(authProvider());
+        //builder.inMemoryAuthentication().withUser("prueba").password("prueba").authorities("1");
+        builder.authenticationProvider(outlookAuthenticator);
     }
 
     @Override
@@ -62,9 +67,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic()
                 .and()
-                .authorizeRequests().anyRequest().authenticated()
+                .authorizeRequests().antMatchers("/static/**").permitAll()
+                .anyRequest().authenticated()
                 .antMatchers("/programs/**").authenticated()
                 .antMatchers("/user/**").hasAuthority("ADMIN_ROLE")
+                .and().formLogin()//.loginPage("/login.html").loginProcessingUrl("/auth").defaultSuccessUrl("/home.html").permitAll()
                 .and()
                 .formLogin().permitAll().and()
                 .logout().logoutSuccessUrl("/")

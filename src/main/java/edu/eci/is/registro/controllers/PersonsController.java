@@ -2,11 +2,14 @@ package edu.eci.is.registro.controllers;
 
 
 import edu.eci.is.registro.entities.Person;
+import edu.eci.is.registro.services.IMailService;
 import edu.eci.is.registro.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +37,7 @@ public class PersonsController {
 
     @RequestMapping(path = "/registrer", method = RequestMethod.POST)
     public ResponseEntity<?> registrerUser(@RequestBody Person user) {
-        user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
+        //user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
         personsServices.save(user);
         Person newUser = user;
 
@@ -47,7 +50,7 @@ public class PersonsController {
         getted.setAuthority(person.getAuthority());
         getted.setLine(person.getLine());
         getted.setProgram(person.getProgram());
-        getted.setPassword(bCryptPasswordEncoder().encode(person.getPassword()));
+        //getted.setPassword(bCryptPasswordEncoder().encode(person.getPassword()));
         personsServices.update(getted);
 
         return new ResponseEntity<>(getted, HttpStatus.ACCEPTED);
