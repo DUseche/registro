@@ -9,19 +9,41 @@
         <script src="home.js"></script>
     </head>
     <body>
-        <div id="banner">
-            <img src="/static/banner.png" width="100%">
-        </div>
-        <div id="programs" align="center">
-            <p>Programas disponibles</p>
-            <ul id="programas"></ul>
-        </div>
-        <p></p>
-        <input type="text" id="nuevoPrograma" value="Crear un programa"/>
-        <button type="button" onclick="registrarPrograma()">Registrar</button>
-        <p></p>
-        <div id="cenefa">
-            Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
-        </div>
+        <table align="center">
+            <tr>
+                <td>
+                    <div id="banner">
+                        <img src="/static/banner.png" width="100%">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><h1>Gestión de contenidos programáticos</h1></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="programs" align="center">
+                        <ul id="programas"></ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p></p>
+                    <input type="text" id="nuevoPrograma" value="Crear un programa"/>
+                    <button type="button" onclick="registrarPrograma()">Registrar</button>
+                    <p></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="80%">
+                    <div id="cenefa">
+                        Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+                    </div>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>

@@ -76,6 +76,7 @@ public class ProgramsController {
                 if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 return ResponseEntity.ok().body(returned);
             }catch(Exception ex){
+                ex.printStackTrace();
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }
@@ -90,6 +91,7 @@ public class ProgramsController {
                 if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 return ResponseEntity.ok().body(returned);
             }catch(Exception ex){
+                ex.printStackTrace();
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }
@@ -104,6 +106,7 @@ public class ProgramsController {
                 if(returned==null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 return ResponseEntity.ok().body(returned);
             }catch(Exception ex){
+                ex.printStackTrace();
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }
@@ -117,10 +120,11 @@ public class ProgramsController {
                 programServices.saveProgram(program);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }catch(Exception ex){
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                ex.printStackTrace();
+                return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
             }
         }
-        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>("Usted no está autorizado a hacer este cambio",HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/{programName}",method = RequestMethod.POST)
@@ -130,10 +134,11 @@ public class ProgramsController {
                 programServices.saveLineIntoProgram(programName, line);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }catch(Exception ex){
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                ex.printStackTrace();
+                return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
             }
         }
-        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>("Usted no está autorizado a hacer este cambio",HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/{program}/{line}",method = RequestMethod.POST)
@@ -143,25 +148,27 @@ public class ProgramsController {
                 programServices.saveCourseIntoLineIntoProgram(program,line,course);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }catch(Exception ex){
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                ex.printStackTrace();
+                return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
             }
         }
-        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>("Usted no está autorizado a hacer este cambio",HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/{program}/{line}/{course}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateCourse(@PathVariable String program, @PathVariable String line, @PathVariable String course, @RequestBody Course newCourse){
         if (checkPrivileges(2) && checkCareerAndLine(program, line)) {
             try {
-                System.out.println(newCourse.toString());
+                //System.out.println("Nombre a cambiar: "+newCourse.getName());
                 programServices.updateCourse(program,line,course,newCourse);
+                //System.out.println("Nombre cambiado: "+programServices.getByName(program).getLineByName(line).getCourseByName(newCourse.getName()).getName());
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }catch(Exception ex){
                 ex.printStackTrace();
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
             }
         }
-        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>("Usted no está autorizado a hacer este cambio",HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/{program}", method = RequestMethod.PUT)
@@ -172,10 +179,10 @@ public class ProgramsController {
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }catch(Exception ex){
                 ex.printStackTrace();
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
             }
         }
-        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>("Usted no está autorizado a hacer este cambio",HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/{program}/{line}", method = RequestMethod.PUT)
@@ -186,9 +193,9 @@ public class ProgramsController {
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }catch(Exception ex){
                 ex.printStackTrace();
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
             }
         }
-        else return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>("Usted no está autorizado a hacer este cambio",HttpStatus.FORBIDDEN);
     }
 }

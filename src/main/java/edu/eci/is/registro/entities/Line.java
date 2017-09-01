@@ -75,7 +75,7 @@ public class Line implements Serializable{
 
     public void updateCourse(String courseName, Course newCourse){
         if(courses.contains(new Course(courseName))){
-            Course geted = courses.get(courses.indexOf(newCourse));
+            /*Course geted = courses.get(courses.indexOf(new Course(courseName)));
             geted.setBibliography(newCourse.getBibliography());
             geted.setCredits(newCourse.getCredits());
             geted.setEvaluation(newCourse.getEvaluation());
@@ -88,7 +88,9 @@ public class Line implements Serializable{
             geted.setRequisites(newCourse.getRequisites());
             geted.setStudyPlans(newCourse.getStudyPlans());
             geted.setTerm(newCourse.getTerm());
-            geted.setWeeklyIntensity(newCourse.getWeeklyIntensity());
+            geted.setWeeklyIntensity(newCourse.getWeeklyIntensity());*/
+            courses.remove(new Course(courseName));
+            courses.add(newCourse);
         }
     }
 

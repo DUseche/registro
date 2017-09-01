@@ -26,6 +26,7 @@ public class OutlookAuthenticator implements AuthenticationProvider {
 
     @Autowired
     PersonServices personsServices;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         try {
@@ -33,15 +34,17 @@ public class OutlookAuthenticator implements AuthenticationProvider {
             String password = authentication.getCredentials().toString();
             if(mailService.check(mail,password)){
                 ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-                //Person person = personsServices.findByMail(mail);
-                //authorities.add(new SimpleGrantedAuthority(person.getAuthority()));
-                authorities.add(new SimpleGrantedAuthority("4"));
+                Person person = personsServices.findByMail(mail);
+                authorities.add(new SimpleGrantedAuthority(person.getAuthority()));
+                //authorities.add(new SimpleGrantedAuthority("4"));
                 return new UsernamePasswordAuthenticationToken(mail,password,authorities);
             }else{
+                System.out.println("El error está en Outlook");
                 throw new BadCredentialsException("Error in authentication");
             }
 
         }catch (Exception ex){
+            //ex.printStackTrace();
             throw new BadCredentialsException("Error in authentication");
         }
 

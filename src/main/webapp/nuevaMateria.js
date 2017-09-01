@@ -61,6 +61,8 @@
                     }).fail(function (response) {
                         console.log("Error al agregar");
                         alert("Error al agregar");
+                    }).then(function(){
+                        alert("Materia agregada");
                     });
             }
 

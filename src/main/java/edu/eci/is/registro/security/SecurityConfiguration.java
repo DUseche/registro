@@ -58,7 +58,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         //builder.inMemoryAuthentication().withUser("admin").password("admin").authorities("ADMIN_ROLE");
         //builder.authenticationProvider(authProvider());
-        //builder.inMemoryAuthentication().withUser("prueba").password("prueba").authorities("1");
+        //builder.inMemoryAuthentication().withUser("prueba").password("prueba").authorities("Admin");
+        //builder.inMemoryAuthentication().withUser("prueba2").password("prueba").authorities("2");
+        //builder.inMemoryAuthentication().withUser("prueba3").password("prueba").authorities("3");
+        //builder.inMemoryAuthentication().withUser("prueba4").password("prueba").authorities("4");
         builder.authenticationProvider(outlookAuthenticator);
     }
 
@@ -70,7 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/static/**").permitAll()
                 .anyRequest().authenticated()
                 .antMatchers("/programs/**").authenticated()
-                .antMatchers("/user/**").hasAuthority("ADMIN_ROLE")
+                .antMatchers("/user/**").hasAuthority("Admin")
                 .and().formLogin()//.loginPage("/login.html").loginProcessingUrl("/auth").defaultSuccessUrl("/home.html").permitAll()
                 .and()
                 .formLogin().permitAll().and()

@@ -8,24 +8,49 @@
         <script src="verPrograma.js"></script>
     </head>
     <body>
-        <div id="banner">
-            <img src="/static/banner.png" width="100%">
-        </div>
-        <input type="text" id="nuevoNombre" value="Nuevo nombre del programa"/>
-        <button type="button" onclick="actualizarPrograma()">Actualizar</button>
-        <div id="lines" align="center">
-            Lineas del programa
-            <ul id="lineas">
-
-            </ul>
-        </div>
-        <p></p>
-        <input type="text" id="nuevaLinea" value="Crear una linea"/>
-        <button type="button" onclick="registrarLinea()">Registrar</button>
-        <button type="button" onclick="regresar()">Regresar</button>
-        <p></p>
-        <div id="cenefa">
-            Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
-        </div>
+        <table align="center">
+            <tr>
+                <td>
+                    <div id="banner">
+                        <img src="/static/banner.png" width="100%">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="nuevoNombre" value="Nuevo nombre del programa"/>
+                    <button type="button" onclick="actualizarPrograma()">Actualizar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1 id="nombreLinea">Ramas del programa</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="lines" align="center">
+                        <ul id="lineas">
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p></p>
+                    <input type="text" id="nuevaLinea" value="Crear una rama"/>
+                    <button type="button" onclick="registrarLinea()">Registrar</button>
+                    <button type="button" onclick="regresar()">Regresar</button>
+                    <p></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="cenefa">
+                        Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+                    </div>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>

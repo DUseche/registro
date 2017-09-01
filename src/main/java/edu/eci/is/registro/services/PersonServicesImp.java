@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by David Useche on 28/04/2017.
  */
@@ -42,5 +44,10 @@ public class PersonServicesImp implements PersonServices {
     public void update(Person toUpdate) {
         personsRepository.saveAndFlush(toUpdate);
     }
+
+    /*@Override
+    public List<Person> getAll() {
+        return personsRepository.findAll();
+    }*/
 
 }

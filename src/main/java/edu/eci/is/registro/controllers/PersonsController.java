@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by David Useche on 18/02/2017.
@@ -25,10 +26,10 @@ public class PersonsController {
     @Autowired
     PersonServices personsServices;
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    /*@RequestMapping(path = "/all", method = RequestMethod.GET)
+    public ResponseEntity<List<Person>> getAllPersons(){
+        return ResponseEntity.ok().body(personsServices.getAll());
+    }*/
 
     @RequestMapping(method = RequestMethod.GET)
     public Principal user(Principal user) {

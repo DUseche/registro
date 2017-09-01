@@ -11,7 +11,7 @@
                     $("#lineas").children().remove();
                     for(i = 0; i < data.lines.length; i++){
                         listaLineas.push(data.lines[i].name);
-                        $("#lineas").append("<li>\n<button type='button' onclick='cambiarPagina("+i+")'>\n"+data.lines[i].name+"\n</button>\n</li>");
+                        $("#lineas").append("<li>\n<button class='customButton' type='button' onclick='cambiarPagina("+i+")'>\n"+data.lines[i].name+"\n</button>\n</li>");
                     }
                 }
                 $.get("/programs/"+sessionStorage.programa).then(promise);
@@ -32,7 +32,10 @@
                 }).fail(function (response) {
                     console.log(response);
                     alert(response.responseText);
-                }).then(cargarLineas());
+                }).then(function(){
+					alert("Rama añadida");
+					cargarLineas();
+				});
             };
 
             function Program(name){
@@ -48,9 +51,11 @@
                     headers: {"X-HTTP-Method-Override": "PUT", "Content-Type": "application/json"},
                     data: JSON.stringify(program)
                 }).fail(function (response) {
-                        console.log("Error al agregar");
-                        alert("Error al agregar");
-                });
+                        console.log(response.responseText);
+                        alert(response.responseText);
+                }).then(function(){
+					alert("Nombre cambiado");
+				});
             }
 
             regresar = function(){

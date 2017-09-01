@@ -52,8 +52,8 @@ ALTER TABLE `COURSES` ADD CONSTRAINT `COURSES_LINE` FOREIGN KEY(`PROGRAM_LINES_n
 ALTER TABLE `PROGRAM_LINES` ADD CONSTRAINT `PROGRAM_LINES_PROGRAMS` FOREIGN KEY(`PROGRAMS_name`) REFERENCES PROGRAMS(`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO PROGRAMS (name) VALUES ("Ingenieria de sistemas");
+INSERT INTO PROGRAMS (name) VALUES ("Ingenieria electrica");
 INSERT INTO PROGRAM_LINES (name, PROGRAMS_name) VALUES ("Plataformas","Ingenieria de sistemas");
 INSERT INTO PERSONS_AUTH (mail,authority) VALUES ("david.useche@mail.escuelaing.edu.co","4");
-INSERT INTO PERSONS_AUTH (mail,authority) VALUES ("daniela.torres-mi@mail.escuelaing.edu.co","3");
-
-
+INSERT INTO PERSONS_AUTH (mail,authority,program) VALUES ("daniela.torres-mi@mail.escuelaing.edu.co","3","Ingenieria electrica");
+INSERT INTO PERSONS_AUTH (mail,authority,program,line) VALUES ("claudia.santiago@escuelaing.edu.co","2","Ingenieria de sistemas","Plataformas");

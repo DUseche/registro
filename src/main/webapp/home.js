@@ -12,7 +12,7 @@
                     $("#programas").children().remove();
                     for(i = 0; i < data.length; i++){
                         listaProgramas.push(data[i].name);
-                        $("#programas").append("<li>\n<button type='button' onclick='cambiarPagina("+i+")'>\n"+data[i].name+"\n</button>\n</li>");
+                        $("#programas").append("<li>\n<button class='customButton' type='button' onclick='cambiarPagina("+i+")'>\n"+data[i].name+"\n</button>\n</li><p></p>");
                     }
                 }
                 $.get("/programs").then(promise);
@@ -33,7 +33,10 @@
                 }).fail(function (response) {
                     console.log(response);
                     alert(response.responseText);
-                }).then(cargarProgramas());
+                }).then(function (){
+					alert("Programa añadido");
+					cargarProgramas();
+				});
             }
 
             $(document).ready(

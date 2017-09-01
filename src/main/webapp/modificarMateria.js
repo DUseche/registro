@@ -62,6 +62,9 @@
                     }).fail(function (response) {
                         console.log("Error al actualizar");
                         alert("Error al actualizar");
+                    }).then(function (){
+                        alert("Materia modificada");
+                        window.location.href = "verLinea.html";
                     });
             }
 

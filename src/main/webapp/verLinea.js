@@ -8,11 +8,11 @@
 
                 cargarMaterias = function(){
                     var promise = function(data){
-                        console.log(data);
+                        //console.log(data);
                         $("#materias").children().remove();
                         for(i = 0; i < data.courses.length; i++){
                             listaMaterias.push(data.courses[i].name);
-                            $("#materias").append("<li>\n<button type='button' onclick='modificarMateria("+i+")'>\n"+data.courses[i].name+"\n</button>\n</li>");
+                            $("#materias").append("<li>\n<button class='customButton' type='button' onclick='modificarMateria("+i+")'>\n"+data.courses[i].name+"\n</button>\n</li>");
                         }
                     }
                     $.get("/programs/"+sessionStorage.programa+"/"+sessionStorage.linea).then(promise);
@@ -35,9 +35,11 @@
                         headers: {"X-HTTP-Method-Override": "PUT", "Content-Type": "application/json"},
                         data: JSON.stringify(line)
                     }).fail(function (response) {
-                        console.log("Error al agregar");
-                        alert("Error al agregar");
-                    });
+                        console.log(response.responseText);
+                        alert(response.responseText);
+                    }).then(function(){
+						alert("Nombre cambiado");
+					});
                 }
 
             regresar = function(){

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de gestión de contenidos programáticos</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="manage.js"></script>
+</head>
+<body>
+<table align="center">
+    <tr>
+        <td>
+            <div id="banner">
+                <img src="/static/banner.png" width="100%">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p><h1>Gestión de usuarios</h1></p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="usuarios" align="center">
+                <ul id="users"></ul>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p></p>
+            <input type="text" id="nuevoUsuario" value="Añadir un usuario"/>
+            <button type="button" onclick="registrarUsuario()">Registrar</button>
+            <p></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="80%">
+            <div id="cenefa">
+                Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

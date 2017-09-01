@@ -3,6 +3,8 @@ package edu.eci.is.registro.entities;
 /**
  * Created by David Useche on 28/04/2017.
  */
+import org.owasp.esapi.ESAPI;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,17 +21,17 @@ public class Person implements Serializable{
     protected Person(){}
 
     public Person(String mail/*, String password*/, String authority) {
-        this.mail = mail;
+        if(ESAPI.validator().isValidInput("Set email",mail, "Email", 500, false)) this.mail = mail;
         //this.password = password;
-        this.authority = authority;
+        if(ESAPI.validator().isValidNumber("Set auth",authority,2,4,false))this.authority = authority;
     }
 
     public Person(String mail/*, String password*/, String authority, String program, String line) {
-        this.mail = mail;
+        if(ESAPI.validator().isValidInput("Set email",mail, "Email", 500, false))this.mail = mail;
         //this.password = password;
-        this.authority = authority;
-        this.program = program;
-        this.line = line;
+        if(ESAPI.validator().isValidNumber("Set auth",authority,2,4,false))this.authority = authority;
+        if(ESAPI.validator().isValidInput("Set program",program, "SafeString", 500, true))this.program = program;
+        if(ESAPI.validator().isValidInput("Set line",line, "SafeString", 500, true))this.line = line;
     }
 
     @Id
@@ -38,7 +40,8 @@ public class Person implements Serializable{
         return mail;
     }
     public void setMail(String mail) {
-        this.mail = mail;
+        if(ESAPI.validator().isValidInput("Set email",mail, "Email", 500, false))
+            this.mail = mail;
     }
 
     /*@Column(name = "pass", nullable = false)
@@ -51,7 +54,10 @@ public class Person implements Serializable{
 
     @Column(name = "authority", nullable = false)
     public String getAuthority() { return authority; }
-    public void setAuthority(String authority) { this.authority = authority; }
+    public void setAuthority(String authority) {
+        if(ESAPI.validator().isValidNumber("Set auth",authority,2,4,false))
+            this.authority = authority;
+    }
 
     @Column(name = "program")
     public String getProgram() {
@@ -59,7 +65,8 @@ public class Person implements Serializable{
     }
 
     public void setProgram(String program) {
-        this.program = program;
+        if(ESAPI.validator().isValidInput("Set program",program, "SafeString", 500, true))
+            this.program = program;
     }
 
     @Column(name = "line")
@@ -68,7 +75,8 @@ public class Person implements Serializable{
     }
 
     public void setLine(String line) {
-        this.line = line;
+        if(ESAPI.validator().isValidInput("Set line",line, "SafeString", 500, true))
+            this.line = line;
     }
 
     @Override

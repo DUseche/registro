@@ -1,16 +1,23 @@
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Sistema de gestión de contenidos programáticos</title>
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-    <script src="modificarMateria.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sistema de gestión de contenidos programáticos</title>
+        <link rel="stylesheet" type="text/css" href="static/styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+        <script src="modificarMateria.js"></script>
+    </head>
     <body>
-    <div id="banner">
-        <img src="/static/banner.png" width="100%">
-    </div>
+    <table align="center">
+        <tr>
+            <td>
+                <div id="banner">
+                    <img src="/static/banner.png" width="100%">
+                </div>
+            </td>
+        </tr>
+    </table>
     <div id="course" align="center">
         <table id="formulario">
             <tr>
@@ -86,8 +93,14 @@
         <button type='button' id = 'regresar' onclick="regresar()">Regresar</button><br>
     </div>
     <p></p>
-    <div id="cenefa">
-        Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
-    </div>
+    <table align="center">
+        <tr>
+            <td>
+                <div id="cenefa">
+                    Desarrollado por David Esteban Useche Pelaez - Laboratorio de informática. 2017
+                </div>
+            </td>
+        </tr>
+    </table>
     </body>
 </html>

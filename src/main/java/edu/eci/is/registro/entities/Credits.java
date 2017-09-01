@@ -10,10 +10,10 @@ import java.io.Serializable;
 @Embeddable
 public class Credits implements Serializable{
 
-    private Integer magistral;
-    private Integer independent;
+    private Float magistral;
+    private Float independent;
 
-    public Credits(Integer magistral, Integer independent) {
+    public Credits(Float magistral, Float independent) {
         this.magistral = magistral;
         this.independent = independent;
     }
@@ -22,20 +22,20 @@ public class Credits implements Serializable{
     }
 
     @Column(name = "magistralCredits")
-    public Integer getMagistral() {
+    public Float getMagistral() {
         return magistral;
     }
 
-    public void setMagistral(Integer magistral) {
+    public void setMagistral(Float magistral) {
         this.magistral = magistral;
     }
 
     @Column(name = "independentCredits")
-    public Integer getIndependent() {
+    public Float getIndependent() {
         return independent;
     }
 
-    public void setIndependent(Integer independent) {
+    public void setIndependent(Float independent) {
         this.independent = independent;
     }
 

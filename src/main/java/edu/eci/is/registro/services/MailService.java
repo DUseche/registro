@@ -71,6 +71,7 @@ public class MailService implements IMailService {
             store.connect();
         } catch (Exception e) {
             isAuthorized = false;
+            e.printStackTrace();
             throw new BadCredentialsException(e.getMessage());
         }
 

@@ -38,8 +38,9 @@ public class ProgramServicesImp implements ProgramServices{
         Program obtained = getByName(programName);
         if(obtained!=null){
             obtained.addLine(toAdd);
-            programsRepository.delete(programName);
-            programsRepository.save(obtained);
+            //programsRepository.delete(programName);
+            //programsRepository.save(obtained);
+            programsRepository.saveAndFlush(obtained);
         }
     }
 
@@ -48,8 +49,9 @@ public class ProgramServicesImp implements ProgramServices{
         Program obtained = getByName(programName);
         if(obtained!=null){
             obtained.getLineByName(lineName).addCourse(toAdd);
-            programsRepository.delete(programName);
-            programsRepository.save(obtained);
+            //programsRepository.delete(programName);
+            //programsRepository.save(obtained);
+            programsRepository.saveAndFlush(obtained);
         }
     }
 
@@ -58,8 +60,9 @@ public class ProgramServicesImp implements ProgramServices{
         Program obtained = getByName(programName);
         if(obtained!=null){
             obtained.getLineByName(lineName).updateCourse(courseName, toUpdate);
-            programsRepository.delete(programName);
-            programsRepository.save(obtained);
+            //programsRepository.delete(programName);
+            //programsRepository.save(obtained);
+            programsRepository.saveAndFlush(obtained);
         }
     }
 
@@ -80,6 +83,7 @@ public class ProgramServicesImp implements ProgramServices{
             obtained.updateLine(lineName, newLine);
             programsRepository.delete(programName);
             programsRepository.save(obtained);
+            //programsRepository.saveAndFlush(obtained);
         }
     }
 
